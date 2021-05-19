@@ -9,8 +9,9 @@ class Assunto extends Model
 {
     protected $table = 'assunto';
     public $primaryKey = 'id';
-    public $incrementing = 'true';
+    public $incrementing = true;
     protected $fillable = [ 'nome' ];
+    public $timestamps = false;
 
     public function relLivro(){
         return $this->hasMany('App\Models\Livro', 'fk_assunto_id');

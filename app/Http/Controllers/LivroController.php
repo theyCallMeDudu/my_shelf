@@ -10,12 +10,16 @@ use App\Models\Editora;
 
 class LivroController extends Controller
 {
-    public function estante() {
-        return view('estante');
-    }
+    // public function estante() {
+    //     return view('estante');
+    // }
 
     public function livros() {
         $livros = Livro::all();
+        /*
+        $livros = Livro::join('livro', 'fk_autor_id', '=', 'autor.id')
+                        ->get(['autor.*', 'livro.id', 'livro.titulo', 'livro.ano']);
+        */
         //dd($livros);
         
         //return view('livros', ['livros' => $livros]);

@@ -21,7 +21,7 @@
             <!-- Logo -->
             <div class="logo left">
                 <a href="/estante">
-                    <img class="logo" src="/img/my-shelf-logo.png" alt="">
+                    <img class="logo" src="/img/my-shelf-logo.svg" alt="">
                 </a>
             </div>
             
@@ -30,9 +30,9 @@
                 <ul>
                 <li><a href="">Estante</a></li>
                     <li><a href="/livros">Livros</a></li>
-                    <li><a href="">Autores</a></li>
-                    <li><a href="">Editoras</a></li>
-                    <li><a href="">Assuntos</a></li>
+                    <li><a href="/assuntos">Assuntos</a></li>
+                    <li><a href="/autores">Autores</a></li>
+                    <li><a href="/editoras">Editoras</a></li>
                 </ul>
             </nav>
             
@@ -44,9 +44,9 @@
                 <ul>
                     <li><a href="">Estante</a></li>
                     <li><a href="/livros">Livros</a></li>
-                    <li><a href="">Autores</a></li>
-                    <li><a href="">Editoras</a></li>
-                    <li><a href="">Assuntos</a></li>
+                    <li><a href="/assuntos">Assuntos</a></li>
+                    <li><a href="/autores">Autores</a></li>
+                    <li><a href="/editoras">Editoras</a></li>
                 </ul>
             </nav>
             <div class="clear"></div>

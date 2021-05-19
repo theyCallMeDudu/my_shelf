@@ -9,8 +9,9 @@ class Autor extends Model
 {
     protected $table = 'autor';
     public $primaryKey = 'id';
-    public $incrementing = 'true';
+    public $incrementing = true;
     protected $fillable = [ 'nome' ];
+    public $timestamps = false;
 
     public function relLivro(){
         return $this->hasMany('App\Models\Livro', 'fk_autor_id');

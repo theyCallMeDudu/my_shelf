@@ -1,16 +1,16 @@
 @extends('layouts.main')
 
-@section('title', 'Livros - Admin')
+@section('title', 'Assuntos - Admin')
 
 @section('content')
 
     <div class="center">
         <!-- div busca -->
         <div id="search-container" class="col-md-12 busca">
-            <h1>Livros</h1>
+            <h1>Assuntos</h1>
             <div class="right">
-                <a href="/livros/create">
-                    <button data-toggle="tooltip" data-placement="top" title="Novo título" class="btn-livros novo-livro">
+                <a href="/assuntos/create">
+                    <button data-toggle="tooltip" data-placement="top" title="Novo assunto" class="btn-livros novo-livro">
                         <i class="fas fa-plus-circle"></i>
                     </button>
                 </a>
@@ -27,20 +27,16 @@
             <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Título</th>
-                    <th scope="col">Autor</th>
-                    <th scope="col">Ano</th>
+                    <th scope="col">Assunto</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($livros as $livro)
+                @foreach ($assuntos as $assunto)
 
                 <tr>
-                    <td>{{ $livro->id }}</td>
-                    <td>{{ $livro->titulo }}</td>
-                    <td>FAZER JOIN AUTOR</td>
-                    <td>{{ $livro->ano }}</td>
+                    <td>{{ $assunto->id }}</td>
+                    <td>{{ $assunto->nome }}</td>
                     <td>
                         <button class="btn-livros" data-toggle="tooltip" data-placement="top" title="Editar">
                             <i class="fas fa-pencil-alt"></i>
