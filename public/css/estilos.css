@@ -1,0 +1,176 @@
+* {
+    font-family: 'Open Sans';
+}
+
+body {
+    overflow-y: scroll;
+}
+
+.logo {
+    width: 100%;
+    max-width: 100px;
+}
+
+.center {
+    max-width: 1280px;
+    padding: 0 10%;
+    margin: 0 auto;
+}
+
+.w33 {
+    width: 33.3%;
+    padding: 0 10px;
+}
+
+.w50 {
+    padding: 0 10px;
+    width: 50%;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+/* Estilização do sistema */
+
+header {
+    padding: 20px 0;
+    background-color: #5A1702;
+}
+
+.mobile {
+    display: none;
+}
+
+nav.desktop ul {
+    position: relative;
+    top: 6px;
+    list-style-type: none;
+}
+
+nav.desktop li {
+    font-weight: 300;
+    font-size: 15px;
+    padding: 0 30px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+nav.desktop a {
+    color: white;
+    text-decoration: none;
+}
+
+.novo-livro {
+    margin-bottom: 10px;
+}
+
+.novo-livro i {
+    font-size: 25px;
+    transition: 0.5s;
+}
+
+.novo-livro i:hover {
+    color: #ce9d5a;
+}
+
+.busca {
+    margin: 20px 0;
+}
+
+.busca h1 {
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.table-livros {
+    background-color: #ce9d5a;
+}
+
+.btn-livros {
+    border: none;
+    background: none;
+}
+
+.div-btn-cad {
+    text-align: center;
+}
+
+.div-btn-cad input {
+    width: 100%;
+    margin: 10px 0;
+}
+
+footer {
+    text-align: center;
+    background-color: #36160c;
+    color: #FFF;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: none;
+}
+
+@media screen and (max-width: 768px) {    
+    .w50 {
+        padding: 20px;
+        width: 100%;
+    }
+    
+    .w33 {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    nav.desktop {
+        display: none;
+    }
+
+    nav.mobile {
+        display: block;
+    }
+
+    .botao-menu-mobile {
+        font-size: 24px;
+        cursor: pointer;
+        color: white;
+    }
+
+    nav.mobile ul {
+        display: none;
+        z-index: 3;
+        position: absolute;
+        left: 0;
+        top: 65px;
+        text-align: center;
+        width: 100%;
+        padding: 0;
+    }
+
+    nav.mobile li {
+        font-size: 17px;
+        font-weight: 300;
+        padding: 8px 0;
+        width: 100%;
+        display: block;
+        background: white;
+        border-bottom: 1px solid #ccc;
+    }
+
+    nav.mobile li a {
+        display: block;
+        color: #444;
+        text-decoration: none;
+    }
+}
