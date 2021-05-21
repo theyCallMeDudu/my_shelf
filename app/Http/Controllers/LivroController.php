@@ -12,9 +12,19 @@ use Illuminate\Support\Facades\DB;
 class LivroController extends Controller
 {
     public function estante() {
-        $livros = Livro::all();
+        $search = request('search');
+        
+        if ($search) {
+            
+            $livros = Livro::where([
+                ['titulo', 'like', '%'.$search.'%']
+            ])->get();
 
-        return view('estante', compact('livros'));
+        } else {
+            $livros = Livro::all();
+        }
+
+        return view('estante', compact('livros', 'search'));
     }
 
     public function show($id) {

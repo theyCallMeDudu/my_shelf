@@ -6,9 +6,13 @@
 
 <div class="center">
     <div id="search-container" class="col-md-12 busca">
+        @if ($search)
+        <h1>Buscando por: "{{ $search }}".</h1>
+        @else
         <h1>Estante</h1>
-        <form action="">
-            <input type="text" id="search" name="search" class="form-control" placeholder="Buscar">
+        @endif
+        <form action="/estante" method="GET">
+            <input type="text" id="search" name="search" class="form-control" placeholder="Busque por um título">
         </form>
     </div>
         
@@ -23,6 +27,11 @@
                 </div>
             </div>
             @endforeach
+            @if (count($livros) == 0 && $search)
+            <p>Não foi possível encontrar nenhum livro com "{{ $search }}". <a href="/estante">Ver todos</a> </p>
+            @elseif (count($livros) == 0)
+            <p>Sua estante está vazia :(</p>
+            @endif
         </div>
     </div>
 </div>
