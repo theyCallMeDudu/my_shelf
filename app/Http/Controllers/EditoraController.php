@@ -26,4 +26,24 @@ class EditoraController extends Controller
 
         return redirect('/editoras');
     }
+
+    public function edit($id) {
+        $editora = Editora::findOrFail($id);
+
+        return view('editoras.edit', compact('editora'));
+    }
+
+    public function update(Request $request) {
+        $data = $request->all();
+
+        Editora::findOrFail($request->id)->update($data);
+
+        return redirect('/editoras')->with('msg', 'Editora editada com sucesso!');
+    }
+
+    public function destroy($id) {
+        Editora::findOrFail($id)->delete();
+
+        return redirect('/editoras')->with('msg', 'Editora excluída com sucesso!');
+    }
 }

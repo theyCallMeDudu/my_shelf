@@ -28,7 +28,7 @@
             <!-- nav desktop -->
             <nav class="desktop right">
                 <ul>
-                <li><a href="">Estante</a></li>
+                <li><a href="/estante">Estante</a></li>
                     <li><a href="/livros">Livros</a></li>
                     <li><a href="/assuntos">Assuntos</a></li>
                     <li><a href="/autores">Autores</a></li>
@@ -42,7 +42,7 @@
                     <i class="fas fa-bars"></i>
                 </div>
                 <ul>
-                    <li><a href="">Estante</a></li>
+                    <li><a href="/estante">Estante</a></li>
                     <li><a href="/livros">Livros</a></li>
                     <li><a href="/assuntos">Assuntos</a></li>
                     <li><a href="/autores">Autores</a></li>
@@ -52,8 +52,12 @@
             <div class="clear"></div>
         </div>
     </header>
-
-    @yield('content')
+    <main>
+        @if (session('msg'))
+            <p class="msg">{{ session('msg') }}</p>
+        @endif
+        @yield('content')
+    </main>
           <footer>
             <p style="margin: 0; font-size: 12pt; font-weight: 300;">
                 MyShelf &copy; 2021

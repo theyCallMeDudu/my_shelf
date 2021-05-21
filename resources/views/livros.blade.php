@@ -39,17 +39,24 @@
                 <tr>
                     <td>{{ $livro->id }}</td>
                     <td>{{ $livro->titulo }}</td>
-                    <td>FAZER JOIN AUTOR</td>
+                    <td>{{ $livro->nome }}</td>
                     <td>{{ $livro->ano }}</td>
                     <td>
-                        <button class="btn-livros" data-toggle="tooltip" data-placement="top" title="Editar">
-                            <i class="fas fa-pencil-alt"></i>
-                        </button>    
-                        <button class="btn-livros" data-toggle="tooltip" data-placement="top" title="Excluir">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
+                        <!-- botão editar -->
+                        <a href="/livros/edit/{{ $livro->id }}" style="text-decoration: none;">
+                            <button class="btn-livros" data-toggle="tooltip" data-placement="top" title="Editar">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>    
+                        </a>
 
-
+                        <!-- form e botão excluir -->
+                        <form action="/livros/{{ $livro->id }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn-livros" data-toggle="tooltip" data-placement="top" title="Excluir">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach

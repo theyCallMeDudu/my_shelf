@@ -26,4 +26,26 @@ class AssuntoController extends Controller
 
         return redirect('/assuntos');
     }
+
+    public function edit($id) {
+        $assunto = Assunto::findOrFail($id);
+
+        return view('assuntos.edit', compact('assunto'));
+    }
+
+    public function update(Request $request) {
+
+        $data = $request->all();
+
+        Assunto::findOrFail($request->id)->update($data);
+
+        return redirect('/assuntos')->with('msg', 'Assunto editado com sucesso!');
+
+    }
+
+    public function destroy($id) {
+        Assunto::findOrFail($id)->delete();
+
+        return redirect('/assuntos')->with('msg', 'Assunto excluído com sucesso!');
+    }
 }

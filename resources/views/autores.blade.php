@@ -38,14 +38,21 @@
                     <td>{{ $autor->id }}</td>
                     <td>{{ $autor->nome }}</td>
                     <td>
-                        <button class="btn-livros" data-toggle="tooltip" data-placement="top" title="Editar">
-                            <i class="fas fa-pencil-alt"></i>
-                        </button>    
-                        <button class="btn-livros" data-toggle="tooltip" data-placement="top" title="Excluir">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
+                        <!-- botão editar -->
+                        <a href="/autores/edit/{{ $autor->id }}" style="text-decoration: none;">
+                            <button class="btn-livros" data-toggle="tooltip" data-placement="top" title="Editar">
+                                <i class="fas fa-pencil-alt"></i>
+                            </button>    
+                        </a>
 
-
+                        <!-- form e botão excluir -->
+                        <form action="/autores/{{ $autor->id }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn-livros" data-toggle="tooltip" data-placement="top" title="Excluir">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach

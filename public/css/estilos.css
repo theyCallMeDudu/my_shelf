@@ -69,6 +69,16 @@ nav.desktop a {
     text-decoration: none;
 }
 
+.msg {
+    background-color: #D4EDDA;
+    color: #155724;
+    border: 1px solid #C3E6CB;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: center;
+    padding: 10px;
+}
+
 .novo-livro {
     margin-bottom: 10px;
 }
@@ -91,6 +101,89 @@ nav.desktop a {
     margin-bottom: 20px;
 }
 
+#livros-container {
+    margin-top: 10px;
+    padding: 8px;
+}
+
+#livros-container .card {
+    max-width: 24%;
+    padding: 0;
+    margin: 5px;
+    align-items: center;
+}
+
+.capa-livro {
+    max-width: 100px;
+}
+
+div.card-body {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+div.card-body h6 {
+    margin-bottom: 40px;
+}
+
+div.card-body a {
+    background-color: #ce9d5a;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    margin: 0;
+    text-decoration: none;
+    text-align: center;
+    padding: 5px 0;
+    color: #000;
+    transition: 0.5s;
+}
+
+div.card-body a:hover {
+    background-color: #5a1702;
+    color: #FFF;
+}
+
+.div-detalhe-livro {
+    margin-top: 20px;
+}
+
+#capa-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.capa-detalhe {
+    max-width: 250px;
+}
+
+.sem-status {
+    color: #acafad;
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.lido {
+    color: #155724;
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.lendo {
+    color: rgb(253, 236, 0);
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.quero-ler {
+    color: rgb(216, 0, 0);
+    font-size: 18px;
+}
+
+
 .table-livros {
     background-color: #ce9d5a;
 }
@@ -98,6 +191,14 @@ nav.desktop a {
 .btn-livros {
     border: none;
     background: none;
+}
+
+#livros-container form {
+    display: inline-block;
+}
+
+.form-group {
+    margin: 20px 0;
 }
 
 .div-btn-cad {
@@ -120,6 +221,11 @@ footer {
     display: none;
 }
 
+/* Edit page */
+.img-preview {
+    width: 100px;
+}
+
 @media screen and (max-width: 768px) {    
     .w50 {
         padding: 20px;
@@ -129,6 +235,13 @@ footer {
     .w33 {
         width: 100%;
         padding: 20px;
+    }
+
+    #livros-container .card {
+        max-width: 97%;
+        padding: 0;
+        margin: 5px;
+        align-items: center;
     }
 }
 
@@ -152,7 +265,7 @@ footer {
         z-index: 3;
         position: absolute;
         left: 0;
-        top: 65px;
+        top: 70px;
         text-align: center;
         width: 100%;
         padding: 0;
@@ -172,5 +285,9 @@ footer {
         display: block;
         color: #444;
         text-decoration: none;
+    }
+
+    .capa-detalhe {
+        max-width: 150px;
     }
 }

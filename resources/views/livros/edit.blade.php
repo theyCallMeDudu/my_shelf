@@ -1,28 +1,29 @@
 @extends('layouts.main')
 
-@section('title', 'Cadastro - livro')
+@section('title', 'Editando: ' . $livro->titulo)
 
 @section('content')
 
     <div class="center">
-        <h1>Novo título</h1>
+        <h1>Editando: {{ $livro->titulo }}</h1>
 
         <div id="livro-create-container" class="col-md-6-offset-md-3">
-            <form action="/livros" method="POST" enctype="multipart/form-data">
+            <form action="/livros/update/{{ $livro->id }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="form-group">
                     <label for="titulo">Título</label>
-                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título do livro" required autocomplete="off">
+                    <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título do livro" value="{{ $livro->titulo }}" required autocomplete="off">
                 </div>
 
                 <div class="form-group">
                     <label for="ano">Ano</label>
-                    <input type="number" class="form-control" id="ano" name="ano" placeholder="ex: 1900">
+                    <input type="number" class="form-control" id="ano" name="ano" placeholder="ex: 1900" value="{{ $livro->ano }}">
                 </div>
 
                 <div class="form-group">
                     <label for="paginas">Páginas</label>
-                    <input type="number" class="form-control" id="paginas" name="paginas" placeholder="ex: 411">
+                    <input type="number" class="form-control" id="paginas" name="paginas" placeholder="ex: 411" value="{{ $livro->paginas }}">
                 </div>
 
                 <div class="form-group">    
@@ -58,10 +59,11 @@
                 <div class="form-group">
                     <label for="image">Capa</label>
                     <input type="file" id="image" name="image" class="form-control-file">
+                    <img src="/img/capas/{{ $livro->image }}" alt="Título do livro: {{ $livro->titulo }}" class="img-preview">
                 </div>
 
                 <div class="div-btn-cad">
-                    <input type="submit" class="btn btn-success" value="Cadastrar">
+                    <input type="submit" class="btn btn-success" value="Salvar alterações">
                 </div>
             </form>
         </div>

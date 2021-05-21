@@ -28,4 +28,26 @@ class AutorController extends Controller
 
         return redirect('/autores');
     }
+
+    public function edit($id) {
+        $autor = Autor::findOrFail($id);
+
+        return view('autores.edit', compact('autor'));
+    }
+
+    public function update(Request $request) {
+
+        $data = $request->all();
+
+        Autor::findOrFail($request->id)->update($data);
+
+        return redirect('/autores')->with('msg', 'Autor editado com sucesso!');
+
+    }
+
+    public function destroy($id) {
+        Autor::findOrFail($id)->delete();
+
+        return redirect('/autores')->with('msg', 'Autor excluído com sucesso!');
+    }
 }

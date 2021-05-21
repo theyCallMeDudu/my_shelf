@@ -5,8 +5,8 @@
 @section('content')
 
 <div class="center">
-    <div id="search-container" class="col-md-12">
-        <h1>Busque por um título</h1>
+    <div id="search-container" class="col-md-12 busca">
+        <h1>Estante</h1>
         <form action="">
             <input type="text" id="search" name="search" class="form-control" placeholder="Buscar">
         </form>
@@ -16,10 +16,10 @@
         <div class="row">
             @foreach ($livros as $livro)
             <div class="card col-md-3">
-                <img src="/img/capa_placeholder.jpg" alt="{{ $livro->title }}">
+                <img class="capa-livro" src="/img/capas/{{ $livro->image }}" alt="{{ $livro->titulo }}">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $livro->titulo }}</h5>
-                    <a href="#" class="btn">Detalhes</a>
+                    <h6 class="card-title">{{ $livro->titulo }}</h6>
+                    <a href="/livros/{{ $livro->id }}">Detalhes</a>
                 </div>
             </div>
             @endforeach
