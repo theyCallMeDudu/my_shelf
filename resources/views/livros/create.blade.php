@@ -17,7 +17,7 @@
 
                 <div class="form-group">
                     <label for="ano">Ano</label>
-                    <input type="number" class="form-control" id="ano" name="ano" placeholder="ex: 1900">
+                    <input type="number" class="form-control" id="ano" name="ano" placeholder="ex: 1900" max="9999">
                 </div>
 
                 <div class="form-group">

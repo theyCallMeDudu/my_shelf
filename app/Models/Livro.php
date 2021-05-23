@@ -29,6 +29,14 @@ class Livro extends Model
         return $this->hasOne('App\Models\Editora', 'id', 'fk_editora_id');
     }
 
+    public function relCapaLivro() {
+        return $this->hasOne(CapaLivro::class, 'fk_livro_id');
+    }
+
+    public function relTeste() {
+        return $this->hasOne(Autor::class, 'id');
+    }
+
     public function retornoLivro($livro) {
         // select * from livro inner join autor on livro.fk_autor_id = autor.id;
         $sql = "SELECT * FROM livro ";

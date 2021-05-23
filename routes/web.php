@@ -27,6 +27,7 @@ Route::put('/livros/update/{id}', [LivroController::class, 'update']);
 // Rota para deletar livro (delete)
 Route::delete('/livros/{id}', [LivroController::class, 'destroy']);
 
+Route::post('/imagem/remove', [LivroController::class, 'removeImagem'])->name('remover');
 
 
 ///// ASSUNTOS
@@ -91,9 +92,16 @@ Route::delete('/editoras/{id}', [EditoraController::class, 'destroy']);
 
 
 ///////////////////// USUÁRIO \\\\\\\\\\\\\\\\\\\\\
+// Rota para início de usuário não logado
+Route::get('/', [LivroController::class, 'index']);
 
 // Rota para a estante de cada usuário (página principal)
 Route::get('/estante', [LivroController::class, 'estante']);
 
 // Rota para um livro em detalhe
 Route::get('/livros/{id}', [LivroController::class, 'show']);
+
+// Rota para autenticação (login)
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('/dashboard');
+})->name('dashboard');

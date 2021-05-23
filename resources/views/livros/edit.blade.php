@@ -18,7 +18,7 @@
 
                 <div class="form-group">
                     <label for="ano">Ano</label>
-                    <input type="number" class="form-control" id="ano" name="ano" placeholder="ex: 1900" value="{{ $livro->ano }}">
+                    <input type="number" class="form-control" id="ano" name="ano" placeholder="ex: 1900" value="{{ $livro->ano }}" max="9999">
                 </div>
 
                 <div class="form-group">
@@ -59,13 +59,22 @@
                 <div class="form-group">
                     <label for="image">Capa</label>
                     <input type="file" id="image" name="image" class="form-control-file">
-                    <img src="/img/capas/{{ $livro->image }}" alt="Título do livro: {{ $livro->titulo }}" class="img-preview">
+                    <img src="{{ asset('storage/' . $livro->relCapaLivro->nome) }}" alt="Título do livro: {{ $livro->titulo }}" class="img-preview">        
                 </div>
-
-                <div class="div-btn-cad">
+                
+                <div class="div-btn-cad" style="float: left;">
                     <input type="submit" class="btn btn-success" value="Salvar alterações">
                 </div>
             </form>
+
+            <form action="{{ route('remover') }}" method="POST">
+                @csrf
+                <input type="hidden" name="imagemCapa" value="{{ $livro->relCapaLivro->nome }}">
+                <button type="submit" class="btn btn-danger" style="display: inline-block; margin: 10px;" data-toggle="tooltip" data-placement="top" title="Remover imagem">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </form>
+
         </div>
     </div>
 

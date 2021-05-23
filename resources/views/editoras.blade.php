@@ -22,7 +22,7 @@
         </div>
 
         <!-- div tabela -->
-        <div id="livros-container" class="col-md-12">
+        <div id="livros-container" class="col-md-12" style="padding: 0;">
         <table class="table table-livros">
             <thead>
                 <tr>

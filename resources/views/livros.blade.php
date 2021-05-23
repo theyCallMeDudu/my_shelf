@@ -22,7 +22,7 @@
         </div>
 
         <!-- div tabela -->
-        <div id="livros-container" class="col-md-12">
+        <div id="livros-container" class="col-md-12" style="padding: 0;">
         <table class="table table-livros">
             <thead>
                 <tr>
@@ -39,7 +39,7 @@
                 <tr>
                     <td>{{ $livro->id }}</td>
                     <td>{{ $livro->titulo }}</td>
-                    <td>{{ $livro->nome }}</td>
+                    <td style="background-color: yellowgreen;">FAZER JOIN COM AUTOR</td>
                     <td>{{ $livro->ano }}</td>
                     <td>
                         <!-- botão editar -->

@@ -7,13 +7,25 @@ use App\Models\Livro;
 use App\Models\Autor;
 use App\Models\Assunto;
 use App\Models\Editora;
+use App\Models\CapaLivro;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class LivroController extends Controller
 {
+    public function index() {
+        //$ultimos = Livro::latest()->take(5)->get();
+        $ultimos = Livro::orderBy('id', 'desc')->take(8)->get();
+
+        return view('welcome', compact('ultimos'));
+    }
+
     public function estante() {
         $search = request('search');
-        
+        $teste = Livro::where('id', 15)->first();
+        $user = Auth::user(); 
+
         if ($search) {
             
             $livros = Livro::where([
@@ -24,7 +36,7 @@ class LivroController extends Controller
             $livros = Livro::all();
         }
 
-        return view('estante', compact('livros', 'search'));
+        return view('estante', compact('livros', 'search', 'user'));
     }
 
     public function show($id) {
@@ -38,6 +50,8 @@ class LivroController extends Controller
 
     public function livros() {
         $livros = Livro::all();
+        $autores = Autor::all();
+        // dd($livros->relAutor->nome);
 
         //$livros = new Livro();
         //$livros->retornoLivro('');
@@ -48,7 +62,7 @@ class LivroController extends Controller
         //dd($livros);
 
         //return view('livros', ['livros' => $livros]);
-        return view('livros', compact('livros'));
+        return view('livros', compact('livros', 'autores'));
     }
 
     public function create() {
@@ -69,25 +83,43 @@ class LivroController extends Controller
          $livro->fk_assunto_id = $request->assunto;
          $livro->fk_autor_id = $request->autor;
          $livro->fk_editora_id = $request->editora;
-
-         // Upload de imagem
-         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            
-            $requestImage = $request->image;
-
-            $extension = $requestImage->extension();
-
-            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension; 
-
-            $requestImage->move(public_path('img/capas'), $imageName);
-
-            $livro->image = $imageName;
-            
-         }
-
          $livro->save();
 
+         // Upload de imagem
+         if ($request->hasFile('image')) {
+            $capa = $this->uploadCapa($request);
+
+            CapaLivro::create([
+                 'nome' => $capa,
+                 'fk_livro_id' => $livro->id
+            ]);
+         }
+
+
          return redirect('/livros')->with('msg', 'Livro cadastrado com sucesso!');
+    }
+
+    private function uploadCapa(Request $request) {
+        $capa = $request->file('image');
+
+        $uploadCapa = $capa->store('capa', 'public');
+
+        return $uploadCapa;
+    }
+
+    public function removeImagem(Request $request) {
+
+        $capa = $request->get('imagemCapa');
+        
+        // Remover a imagem da pasta
+        if (Storage::disk('public')->exists($capa)) {
+            Storage::disk('public')->delete($capa);
+        }
+
+        // Remover imagem do banco
+        $deletaImagem = CapaLivro::where('nome', $capa);
+        $deletaImagem->delete();
+
     }
 
     // 
