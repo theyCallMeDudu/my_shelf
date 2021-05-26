@@ -56,24 +56,29 @@
                     </select>
                 </div>
 
+                @if ($livro->relCapaLivro == '')
                 <div class="form-group">
                     <label for="image">Capa</label>
                     <input type="file" id="image" name="image" class="form-control-file">
-                    <img src="{{ asset('storage/' . $livro->relCapaLivro->nome) }}" alt="Título do livro: {{ $livro->titulo }}" class="img-preview">        
                 </div>
+                @endif
                 
-                <div class="div-btn-cad" style="float: left;">
+                <div class="div-btn-cad">
                     <input type="submit" class="btn btn-success" value="Salvar alterações">
                 </div>
             </form>
-
+            
+            @if (isset($livro->relCapaLivro->nome))
             <form action="{{ route('remover') }}" method="POST">
                 @csrf
                 <input type="hidden" name="imagemCapa" value="{{ $livro->relCapaLivro->nome }}">
+                <h6>Capa</h6>
+                <img src="{{ asset('storage/' . $livro->relCapaLivro->nome) }}" alt="Título do livro: {{ $livro->titulo }}" class="img-preview" style="display: block;">        
                 <button type="submit" class="btn btn-danger" style="display: inline-block; margin: 10px;" data-toggle="tooltip" data-placement="top" title="Remover imagem">
                     <i class="fas fa-trash"></i>
                 </button>
             </form>
+            @endif
 
         </div>
     </div>

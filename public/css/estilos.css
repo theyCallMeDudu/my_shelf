@@ -157,6 +157,10 @@ nav.desktop a {
     max-width: 100px;
 }
 
+.capa-livro-detalhe {
+    max-width: 160px;
+}
+
 div.card-body {
     padding: 0;
     display: flex;
@@ -194,6 +198,11 @@ div.card-body a:hover {
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+#info-container {
+    background: #ce9d5a;
+    padding: 6px 0 6px 20px;
 }
 
 .capa-detalhe {
@@ -282,6 +291,13 @@ footer {
         padding: 0;
         margin: 5px;
         align-items: center;
+    }
+
+    #capa-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 20px;
     }
 }
 

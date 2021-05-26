@@ -8,6 +8,7 @@ use App\Models\Autor;
 use App\Models\Assunto;
 use App\Models\Editora;
 use App\Models\CapaLivro;
+use App\Models\Status;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,7 @@ class LivroController extends Controller
     public function index() {
         //$ultimos = Livro::latest()->take(5)->get();
         $ultimos = Livro::orderBy('id', 'desc')->take(8)->get();
+        //$is_admin = Auth::user()->is_admin;
 
         return view('welcome', compact('ultimos'));
     }
@@ -24,7 +26,8 @@ class LivroController extends Controller
     public function estante() {
         $search = request('search');
         $teste = Livro::where('id', 15)->first();
-        $user = Auth::user(); 
+        $user = Auth::user();
+        $is_admin = Auth::user()->is_admin;
 
         if ($search) {
             
@@ -36,28 +39,33 @@ class LivroController extends Controller
             $livros = Livro::all();
         }
 
-        return view('estante', compact('livros', 'search', 'user'));
+        return view('estante', compact('livros', 'search', 'user', 'is_admin'));
     }
 
     public function show($id) {
         $livro = Livro::findOrFail($id);
+        $status = Status::all();
+        $user = Auth::id();
+        $is_admin = Auth::user()->is_admin;
+
         //$autor = new Autor();
 
         //$autor = DB::select("SELECT autor.nome FROM autor INNER JOIN livro ON livro.id = $id and livro.fk_autor_id = autor.id");
 
-        return view('livros.show', compact('livro'));
+        return view('livros.show', compact('livro', 'status', 'user', 'is_admin'));
     }
 
     public function livros() {
         $livros = Livro::all();
         $autores = Autor::all();
+        
         // dd($livros->relAutor->nome);
 
         //$livros = new Livro();
         //$livros->retornoLivro('');
         // dd($teste->retornoLivro(''));
 
-        //$livros = DB::select("SELECT * FROM livro INNER JOIN autor ON livro.fk_autor_id = autor.id");
+        $livros = DB::select("SELECT l.id, l.titulo, l.ano, a.nome FROM livro as l INNER JOIN autor as a ON l.fk_autor_id = a.id;");
         //$livros = DB::select('select * from livro');
         //dd($livros);
 
@@ -69,6 +77,7 @@ class LivroController extends Controller
         $autores = Autor::all();
         $assuntos = Assunto::all();
         $editoras = Editora::all();
+        
 
         return view('livros.create', compact('autores', 'assuntos', 'editoras'));
     }
@@ -128,6 +137,8 @@ class LivroController extends Controller
         $autores = Autor::all();
         $assuntos = Assunto::all();
         $editoras = Editora::all();
+        
+        //dd($livro->relCapaLivro);
 
         return view('livros.edit', compact('livro', 'autores', 'assuntos', 'editoras'));
     }
@@ -137,17 +148,13 @@ class LivroController extends Controller
         $data = $request->all();
         
         // Upload de imagem
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            
-            $requestImage = $request->image;
+        if ($request->hasFile('image')) {
+            $capa = $this->uploadCapa($request);
 
-            $extension = $requestImage->extension();
-
-            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension; 
-
-            $requestImage->move(public_path('img/capas'), $imageName);
-
-            $data['image'] = $imageName;
+            CapaLivro::create([
+                 'nome' => $capa,
+                 'fk_livro_id' => $request->id
+            ]);
          }
         
         Livro::findOrFail($request->id)->update($data);

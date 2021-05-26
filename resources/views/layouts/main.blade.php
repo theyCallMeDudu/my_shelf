@@ -13,38 +13,38 @@
         <!-- CSS da aplicação -->
         <link rel="stylesheet" href="/css/estilos.css">
         <!-- CSS Bootstrap -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        
+        <!-- jQuery e Bootstrap Carousel -->
+        <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
     </head>
     <body>
     <header>
         <div class="center">
             <!-- Logo -->
-            <div class="logo left">
-                <a href="/">
-                    <img class="logo" src="/img/my-shelf-logo.svg" alt="">
-                </a>
+            <div class="logo left">                              
+                <img class="logo" src="/img/my-shelf-logo.svg" alt="">
             </div>
             
             <!-- nav desktop -->
             <nav class="desktop right">
                 <ul>
                     @auth
-                    <li><a href="/estante">Estante</a></li>
+                    @if($is_admin != null)
                     <li><a href="/livros">Livros</a></li>
                     <li><a href="/assuntos">Assuntos</a></li>
                     <li><a href="/autores">Autores</a></li>
                     <li><a href="/editoras">Editoras</a></li>
+                    @endif
+                    <li><a href="/estante">Estante</a></li>
+                    
                     <li>
                         <form action="/logout" method="POST">
-                            @csrf
-                            <a href="/logout" 
-                                onclick="event.preventDefault();
+                        @csrf
+                        <a href="/logout" 
+                        onclick="event.preventDefault();
                                 this.closest('form').submit();">
                             Sair
                         </a>
@@ -103,8 +103,18 @@
                 MyShelf &copy; 2021
             </p>
           </footer>  -->
-            <!-- JavaScript do sistema -->
-            <script src="js/jquery.js"></script>
-            <script src="js/scripts.js"></script>
+          <!-- jQuery do sistema -->
+          <script src="/js/jquery.js"></script>
+          <!-- Booststrap JS do sistema -->
+          <!-- <script type="text/javascript" href="/bootstrap/js/bootstrap.min.js"></script> -->
+          <!-- JavaScript do sistema -->
+          <script src="/js/scripts.js"></script>
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+
     </body>
 </html>

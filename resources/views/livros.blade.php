@@ -39,7 +39,7 @@
                 <tr>
                     <td>{{ $livro->id }}</td>
                     <td>{{ $livro->titulo }}</td>
-                    <td style="background-color: yellowgreen;">FAZER JOIN COM AUTOR</td>
+                    <td style="background-color: yellowgreen;">{{ $livro->nome }}</td>
                     <td>{{ $livro->ano }}</td>
                     <td>
                         <!-- botão editar -->

@@ -14,7 +14,6 @@ class Livro extends Model
     public $incrementing = true;
     protected $fillable = [ 'titulo', 'ano', 'paginas', 'fk_assunto_id', 'fk_autor_id', 'fk_editora_id' ];
     public $timestamps = false;
-
     protected $guarded = [];
 
     public function relAutor(){

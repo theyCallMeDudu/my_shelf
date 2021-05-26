@@ -53,4 +53,19 @@ $(function(){
             $('html,body').animate({'scrollTop':divScroll});
         }
     })
+
+    // Abrir modal adicionar livro à estante
+    $("#btn-modal-add-livro").click(function(){
+        $("#modalAddLivro").modal('toggle');
+    });
+
+    // Fechar modal adicionar livro à estante
+    $("#btn-close-01").click(function() {
+        $("#modalAddLivro").modal('toggle');
+    });
+
+    // Fechar modal adicionar livro à estante
+    $("#btn-close-02").click(function() {
+        $("#modalAddLivro").modal('toggle');
+    });
 })

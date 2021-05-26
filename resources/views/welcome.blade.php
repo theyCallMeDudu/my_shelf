@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div id="carouselExampleIndicators" class="carousel slide center" data-ride="carousel" style="padding-top: 20px;">
+<div id="carouselExampleIndicators" class="carousel slide center" data-ride="carousel" style="margin-top: 30px;">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>

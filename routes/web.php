@@ -8,9 +8,10 @@ use App\Http\Controllers\EditoraController;
 
 ///////////////////// ADMIN \\\\\\\\\\\\\\\\\\\\\
 
+
 ///// LIVROS
 // Rota para os livros cadastrados no sistema pelo admin
-Route::get('/livros', [LivroController::class, 'livros']);
+Route::get('/livros', [LivroController::class, 'livros'])->middleware('admin');
 
 // Rota para a página de cadastro de livros
 Route::get('/livros/create', [LivroController::class, 'create']);
@@ -32,7 +33,7 @@ Route::post('/imagem/remove', [LivroController::class, 'removeImagem'])->name('r
 
 ///// ASSUNTOS
 // Rota para a página de assuntos cadastrados no sistema
-Route::get('/assuntos', [AssuntoController::class, 'assuntos']);
+Route::get('/assuntos', [AssuntoController::class, 'assuntos'])->middleware('admin');
 
 // Rota para a página de cadastro de assuntos
 Route::get('/assuntos/create', [AssuntoController::class, 'create']);
@@ -53,7 +54,7 @@ Route::delete('/assuntos/{id}', [AssuntoController::class, 'destroy']);
 
 ///// AUTORES
 // Rota para a página de autores cadastrados no sistema
-Route::get('/autores', [AutorController::class, 'autores']);
+Route::get('/autores', [AutorController::class, 'autores'])->middleware('admin');
 
 // Rota para a página de cadastro de autores
 Route::get('/autores/create', [AutorController::class, 'create']);
@@ -73,7 +74,7 @@ Route::delete('/autores/{id}', [AutorController::class, 'destroy']);
 
 ///// EDITORAS
 // Rota para a página de editoras cadastradas no sistema
-Route::get('/editoras', [EditoraController::class, 'editoras']);
+Route::get('/editoras', [EditoraController::class, 'editoras'])->middleware('admin');
 
 // Rota para a página de cadastro de editoras
 Route::get('editoras/create', [EditoraController::class, 'create']);
@@ -96,7 +97,7 @@ Route::delete('/editoras/{id}', [EditoraController::class, 'destroy']);
 Route::get('/', [LivroController::class, 'index']);
 
 // Rota para a estante de cada usuário (página principal)
-Route::get('/estante', [LivroController::class, 'estante']);
+Route::get('/estante', [LivroController::class, 'estante'])->middleware('auth');
 
 // Rota para um livro em detalhe
 Route::get('/livros/{id}', [LivroController::class, 'show']);
@@ -105,3 +106,6 @@ Route::get('/livros/{id}', [LivroController::class, 'show']);
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('/dashboard');
 })->name('dashboard');
+
+// Rota para adicionar um livro à estante
+Route::post('/livros', [UserLivroController::class, 'store']);
