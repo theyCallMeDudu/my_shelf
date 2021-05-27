@@ -4,19 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Autor;
+use Illuminate\Support\Facades\Auth;
 
 class AutorController extends Controller
 {
     public function autores() {
         $autores = Autor::all();
+        $is_admin = Auth::user()->is_admin;
         //dd($livros);
         
         //return view('livros', ['livros' => $livros]);
-        return view('autores', compact('autores'));
+        return view('autores', compact('autores', 'is_admin'));
     }
 
     public function create() {
-        return view('autores.create');
+        $is_admin = Auth::user()->is_admin;
+
+        return view('autores.create', compact('is_admin'));
     }
 
     public function store(Request $request) {
@@ -31,8 +35,9 @@ class AutorController extends Controller
 
     public function edit($id) {
         $autor = Autor::findOrFail($id);
+        $is_admin = Auth::user()->is_admin;
 
-        return view('autores.edit', compact('autor'));
+        return view('autores.edit', compact('autor', 'is_admin'));
     }
 
     public function update(Request $request) {

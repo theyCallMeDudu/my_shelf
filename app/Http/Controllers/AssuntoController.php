@@ -4,17 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Assunto;
+use Illuminate\Support\Facades\Auth;
 
 class AssuntoController extends Controller
 {
     public function assuntos() {
         $assuntos = Assunto::all();
+        $is_admin = Auth::user()->is_admin;
 
-        return view('assuntos', compact('assuntos'));
+        return view('assuntos', compact('assuntos', 'is_admin'));
     }
 
     public function create() {
-        return view('assuntos.create');
+        $is_admin = Auth::user()->is_admin;
+
+        return view('assuntos.create', compact('is_admin'));
     }
 
     public function store(Request $request) {
@@ -29,8 +33,9 @@ class AssuntoController extends Controller
 
     public function edit($id) {
         $assunto = Assunto::findOrFail($id);
+        $is_admin = Auth::user()->is_admin;
 
-        return view('assuntos.edit', compact('assunto'));
+        return view('assuntos.edit', compact('assunto', 'is_admin'));
     }
 
     public function update(Request $request) {

@@ -38,6 +38,7 @@
                     <li><a href="/autores">Autores</a></li>
                     <li><a href="/editoras">Editoras</a></li>
                     @endif
+                    <li><a href="/catalogo">Catálogo</a></li>
                     <li><a href="/estante">Estante</a></li>
                     
                     <li>
@@ -65,17 +66,21 @@
                     <i class="fas fa-bars"></i>
                 </div>
                 <ul>
-                    @auth
-                    <li><a href="/estante">Estante</a></li>
+                @auth
+                    @if($is_admin != null)
                     <li><a href="/livros">Livros</a></li>
                     <li><a href="/assuntos">Assuntos</a></li>
                     <li><a href="/autores">Autores</a></li>
                     <li><a href="/editoras">Editoras</a></li>
+                    @endif
+                    <li><a href="/catalogo">Catálogo</a></li>
+                    <li><a href="/estante">Estante</a></li>
+                    
                     <li>
                         <form action="/logout" method="POST">
-                            @csrf
-                            <a href="/logout" 
-                                onclick="event.preventDefault();
+                        @csrf
+                        <a href="/logout" 
+                        onclick="event.preventDefault();
                                 this.closest('form').submit();">
                             Sair
                         </a>

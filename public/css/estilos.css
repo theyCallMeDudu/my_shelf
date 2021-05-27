@@ -259,6 +259,63 @@ div.card-body a:hover {
     margin: 10px 0;
 }
 
+/* Estante */
+
+.titulo-livro-estante {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+#tag-lido {
+    margin-bottom: 40px;
+    padding: 2px 4px;
+    font-size: 14px;
+    border-radius: 4px;
+    height: 25px;
+}
+
+#tag-ler {
+    margin-bottom: 40px;
+    padding: 2px 4px;
+    font-size: 14px;
+    border-radius: 4px;
+    height: 25px;
+}
+
+#tag-lendo {
+    margin-bottom: 40px;
+    padding: 2px 4px;
+    font-size: 14px;
+    border-radius: 4px;
+    height: 25px;
+}
+
+.card-detalhe {
+    background-color: #ce9d5a;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    margin: 0;
+    text-decoration: none;
+    text-align: center;
+    padding: 5px 0;
+    color: #000;
+    transition: 0.5s;
+}
+
+.card-detalhe a{
+    text-decoration: none;
+    color: #000;
+}
+
+.card-detalhe:hover {
+    text-decoration: none;
+    color: #FFF;
+    background-color: #5A1702;
+}
+/* Estante */
+
 footer {
     text-align: center;
     background-color: #36160c;

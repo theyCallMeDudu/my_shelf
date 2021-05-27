@@ -5,6 +5,7 @@ use App\Http\Controllers\LivroController;
 use App\Http\Controllers\AutorController;
 use App\Http\Controllers\AssuntoController;
 use App\Http\Controllers\EditoraController;
+use App\Http\Controllers\UserLivroController;
 
 ///////////////////// ADMIN \\\\\\\\\\\\\\\\\\\\\
 
@@ -28,7 +29,11 @@ Route::put('/livros/update/{id}', [LivroController::class, 'update']);
 // Rota para deletar livro (delete)
 Route::delete('/livros/{id}', [LivroController::class, 'destroy']);
 
+// Rota para deletar imagem de capa
 Route::post('/imagem/remove', [LivroController::class, 'removeImagem'])->name('remover');
+
+// Rota para catálogo
+Route::get('/catalogo', [LivroController::class, 'catalogo']);
 
 
 ///// ASSUNTOS
@@ -97,7 +102,7 @@ Route::delete('/editoras/{id}', [EditoraController::class, 'destroy']);
 Route::get('/', [LivroController::class, 'index']);
 
 // Rota para a estante de cada usuário (página principal)
-Route::get('/estante', [LivroController::class, 'estante'])->middleware('auth');
+Route::get('/estante', [UserLivroController::class, 'estante'])->middleware('auth');
 
 // Rota para um livro em detalhe
 Route::get('/livros/{id}', [LivroController::class, 'show']);
@@ -108,4 +113,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 // Rota para adicionar um livro à estante
-Route::post('/livros', [UserLivroController::class, 'store']);
+Route::post('/estante', [UserLivroController::class, 'adicionaLivro'])->name('adicionar');

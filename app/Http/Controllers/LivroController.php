@@ -23,10 +23,8 @@ class LivroController extends Controller
         return view('welcome', compact('ultimos'));
     }
 
-    public function estante() {
+    public function catalogo() {
         $search = request('search');
-        $teste = Livro::where('id', 15)->first();
-        $user = Auth::user();
         $is_admin = Auth::user()->is_admin;
 
         if ($search) {
@@ -39,7 +37,7 @@ class LivroController extends Controller
             $livros = Livro::all();
         }
 
-        return view('estante', compact('livros', 'search', 'user', 'is_admin'));
+        return view('catalogo', compact('livros', 'search', 'is_admin'));
     }
 
     public function show($id) {
@@ -58,6 +56,7 @@ class LivroController extends Controller
     public function livros() {
         $livros = Livro::all();
         $autores = Autor::all();
+        $is_admin = Auth::user()->is_admin;
         
         // dd($livros->relAutor->nome);
 
@@ -70,16 +69,16 @@ class LivroController extends Controller
         //dd($livros);
 
         //return view('livros', ['livros' => $livros]);
-        return view('livros', compact('livros', 'autores'));
+        return view('livros', compact('livros', 'autores', 'is_admin'));
     }
 
     public function create() {
         $autores = Autor::all();
         $assuntos = Assunto::all();
         $editoras = Editora::all();
-        
+        $is_admin = Auth::user()->is_admin;
 
-        return view('livros.create', compact('autores', 'assuntos', 'editoras'));
+        return view('livros.create', compact('autores', 'assuntos', 'editoras', 'is_admin'));
     }
 
     // Insere dados no banco
@@ -129,6 +128,7 @@ class LivroController extends Controller
         $deletaImagem = CapaLivro::where('nome', $capa);
         $deletaImagem->delete();
 
+        return redirect('/livros')->with('msg', 'Imagem de capa removida com sucesso.');
     }
 
     // 
@@ -137,10 +137,11 @@ class LivroController extends Controller
         $autores = Autor::all();
         $assuntos = Assunto::all();
         $editoras = Editora::all();
+        $is_admin = Auth::user()->is_admin;
         
         //dd($livro->relCapaLivro);
 
-        return view('livros.edit', compact('livro', 'autores', 'assuntos', 'editoras'));
+        return view('livros.edit', compact('livro', 'autores', 'assuntos', 'editoras', 'is_admin'));
     }
 
     public function update(Request $request) {

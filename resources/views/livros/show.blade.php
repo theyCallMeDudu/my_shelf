@@ -43,8 +43,9 @@
 
                             <div class="modal-body">
                                 Selecione um status
-                                <form action="/estante" method="POST">
+                                <form action="{{ route('adicionar') }}" method="POST">
                                 @csrf
+                                <input type="hidden" name="livro_id" value="{{ $livro->id }}">
                                 <div class="form-group">    
                                     <label for="status">Status</label>
                                     <select class="form-control" name="status" id="status" required>
@@ -61,12 +62,12 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button id="btn-close-01" type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="submit" class="btn btn-primary">Salvar</button>
-                            </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="btn-close-01" type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary">Salvar</button>
+                                </div>
+                            </form>
 
                                 @else
                                 <h5 class="modal-title" id="exampleModalLabel">Adicionar livro à estante</h5>

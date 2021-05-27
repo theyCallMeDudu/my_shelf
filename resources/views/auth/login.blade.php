@@ -1,11 +1,6 @@
 <x-guest-layout style="background-color: #5A1702;">
     <x-jet-authentication-card style="background-color: #5A1702;">
         <x-slot name="logo">
-        <div class="logo" style="background-color: #5A1702;">
-                <a href="/estante">
-                    <img class="logo" src="/img/my-shelf-logo.svg" alt="">
-                </a>
-            </div>
             <x-jet-authentication-card-logo />
         </x-slot>
 
@@ -18,6 +13,9 @@
         @endif
 
         <form method="POST" action="{{ route('login') }}">
+        <div class="text-center">
+            <h4 style="font-size: 16px; font-weight: 700;">Login</h4>
+        </div>    
             @csrf
 
             <div>
@@ -26,26 +24,26 @@
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
+                <x-jet-label for="password" value="{{ __('Senha') }}" />
                 <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
             </div>
 
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">
                     <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Lembrar-me') }}</span>
                 </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                        {{ __('Esqueceu sua senha?') }}
                     </a>
                 @endif
 
                 <x-jet-button class="ml-4">
-                    {{ __('Log in') }}
+                    {{ __('Entrar') }}
                 </x-jet-button>
             </div>
         </form>

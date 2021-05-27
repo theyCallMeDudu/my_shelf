@@ -20,16 +20,40 @@
         <div class="row">
             @foreach ($livros as $livro)
             <div class="card col-md-3">
-                @if (isset($livro->relCapaLivro->nome))
+                <!-- @if (isset($livro->relCapaLivro->nome))
                 <img class="capa-livro" src="{{ asset('storage/' . $livro->relCapaLivro->nome)  }}" alt="{{ $livro->titulo }}">
                 @else
                 <img class="capa-livro" src="/img/sem_capa.png" alt="{{ $livro->titulo }}">
-                @endif
-                <div class="card-body">
-                    <h6 class="card-title">{{ $livro->titulo }}</h6>
+            </div>
+                @endif -->
+                <h6 class="card-title titulo-livro-estante">{{ $livro->titulo }}</h6>
+                <div class="card-body" style="padding: 0;">
                     
-                    <a href="/livros/{{ $livro->id }}">Detalhes</a>
+                    @if ($livro->nome == 'Lido')
+                    <div id="tag-lido" style="background-color: green;">
+                        <span style="color:white;">
+                            <i class="fas fa-book"></i>
+                            Lido
+                        </span> 
+                    </div>
+                    @elseif ($livro->nome == 'Lendo')
+                    <div id="tag-lendo" style="background-color: yellow;">
+                        <span style="color:black;">
+                            <i class="fas fa-book"></i>
+                            Lendo
+                        </span> 
+                    </div>
+                    @else
+                    <div id="tag-ler" style="background-color: red;">
+                        <span style="color:white;">
+                            <i class="fas fa-book"></i>
+                            Quero ler
+                        </span> 
+                    </div>
+                    @endif
                 </div>
+                <a class="card-detalhe" href="/livros/{{ $livro->id }}">Detalhes</a>
+                
             </div>
             @endforeach
             @if (count($livros) == 0 && $search)
@@ -39,5 +63,4 @@
             @endif
         </div>
     </div>
-</div>
 @endsection
