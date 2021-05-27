@@ -26,17 +26,24 @@
                 <img class="capa-livro" src="/img/sem_capa.png" alt="{{ $livro->titulo }}">
             </div>
                 @endif -->
+                @if (isset($livro->nome))
+                <img class="capa-livro" src="{{ asset('storage/' . $livro->nome)  }}" alt="{{ $livro->titulo }}">
+                @else
+                <img class="capa-livro" src="/img/sem_capa.png" alt="{{ $livro->titulo }}">
+                @endif
+
                 <h6 class="card-title titulo-livro-estante">{{ $livro->titulo }}</h6>
+                
                 <div class="card-body" style="padding: 0;">
-                    
-                    @if ($livro->nome == 'Lido')
+
+                    @if ($livro->status == 'Lido')
                     <div id="tag-lido" style="background-color: green;">
                         <span style="color:white;">
                             <i class="fas fa-book"></i>
                             Lido
                         </span> 
                     </div>
-                    @elseif ($livro->nome == 'Lendo')
+                    @elseif ($livro->status == 'Lendo')
                     <div id="tag-lendo" style="background-color: yellow;">
                         <span style="color:black;">
                             <i class="fas fa-book"></i>

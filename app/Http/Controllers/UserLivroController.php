@@ -17,6 +17,7 @@ class UserLivroController extends Controller
         $user = Auth::user();
         $user_id = Auth::id();
         $is_admin = Auth::user()->is_admin;
+
         //$livros = UserLivro::all();
 
         // if ($search) {
@@ -31,18 +32,20 @@ class UserLivroController extends Controller
         // }
 
         $livros = DB::select("SELECT 
-                                l.id, 
-                                l.titulo, 
-                                u.id, 
-                                u.user_id, 
-                                u.fk_status_id, 
-                                u.fk_livro_id,
-                                s.nome
-                                -- c.nome
+                                    l.id, 
+                                    l.titulo, 
+                                    u.id as users_livro_id, 
+                                    u.user_id, 
+                                    u.fk_status_id, 
+                                    u.fk_livro_id,
+                                    s.nome as status,
+                                    c.nome
                              FROM users_livro as u
-                             INNER JOIN livro as l ON u.fk_livro_id = l.id
-                             INNER JOIN status as s ON u.fk_status_id = s.id
+                             LEFT JOIN livro as l ON u.fk_livro_id = l.id
+                             LEFT JOIN status as s ON u.fk_status_id = s.id
+                             LEFT JOIN capa_livro as c ON l.id = c.fk_livro_id
                              WHERE u.user_id = $user_id");
+        //dd($livros);
 
         return view('estante', compact('livros', 'search', 'user', 'is_admin'));
     }
