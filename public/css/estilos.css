@@ -69,6 +69,33 @@ nav.desktop a {
     text-decoration: none;
 }
 
+.dropdown {
+    color: #FFF;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    text-align: center;
+    left: -26px;
+}
+
+.dropdown-content a {
+    color: black !important;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: lightgray;
+}
+
 /* Welcome */
 
 .box-ultimos {
@@ -262,6 +289,12 @@ div.card-body a:hover {
 
 /* Estante */
 
+.capa-livro-estante {
+    max-width: 100px;
+    max-height: 130px;
+    margin-bottom: 34px;
+}
+
 .titulo-livro-estante {
     font-size: 16px;
     font-weight: 400;
@@ -269,25 +302,35 @@ div.card-body a:hover {
 }
 
 #tag-lido {
-    margin-bottom: 40px;
+    margin-bottom: 29px;
     padding: 2px 4px;
-    font-size: 14px;
+    font-size: 13px;
     border-radius: 4px;
     height: 25px;
 }
 
+.tag-status {
+    cursor: pointer;
+}
+
+.link-status {
+    background-color: transparent !important;
+    width: auto !important;
+    left: 0;
+}
+
 #tag-ler {
-    margin-bottom: 40px;
+    margin-bottom: 29px;
     padding: 2px 4px;
-    font-size: 14px;
+    font-size: 12.5px;
     border-radius: 4px;
     height: 25px;
 }
 
 #tag-lendo {
-    margin-bottom: 40px;
+    margin-bottom: 29px;
     padding: 2px 4px;
-    font-size: 14px;
+    font-size: 13px;
     border-radius: 4px;
     height: 25px;
 }

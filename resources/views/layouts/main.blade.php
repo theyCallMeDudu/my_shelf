@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        
         <title>@yield('title')</title>
 
         <!-- Fonte do Google -->
@@ -32,14 +33,20 @@
             <nav class="desktop right">
                 <ul>
                     @auth
-                    @if($is_admin != null)
-                    <li><a href="/livros">Livros</a></li>
-                    <li><a href="/assuntos">Assuntos</a></li>
-                    <li><a href="/autores">Autores</a></li>
-                    <li><a href="/editoras">Editoras</a></li>
-                    @endif
                     <li><a href="/catalogo">Catálogo</a></li>
                     <li><a href="/estante">Estante</a></li>
+                    @if($is_admin != null)
+                    <li class="dropdown">
+                        Admin
+                        <div class="dropdown-content">
+                            <a href="/livros">Livros</a>
+                            <a href="/assuntos">Assuntos</a>
+                            <a href="/autores">Autores</a>
+                            <a href="/editoras">Editoras</a>
+                            <a href="/admin/gestao">Gestão de usuários</a>
+                        </div>
+                    </li>
+                    @endif
                     
                     <li>
                         <form action="/logout" method="POST">
@@ -67,14 +74,15 @@
                 </div>
                 <ul>
                 @auth
+                    <li><a href="/catalogo">Catálogo</a></li>
+                    <li><a href="/estante">Estante</a></li>
                     @if($is_admin != null)
                     <li><a href="/livros">Livros</a></li>
                     <li><a href="/assuntos">Assuntos</a></li>
                     <li><a href="/autores">Autores</a></li>
                     <li><a href="/editoras">Editoras</a></li>
+                    <li><a href="/admin/gestao">Gestão de usuários</a></li>
                     @endif
-                    <li><a href="/catalogo">Catálogo</a></li>
-                    <li><a href="/estante">Estante</a></li>
                     
                     <li>
                         <form action="/logout" method="POST">

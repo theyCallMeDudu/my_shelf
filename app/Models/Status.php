@@ -22,4 +22,8 @@ class Status extends Model
     public $timestamps = false;
     protected $fillable = ['nome'];
 
+    public function relUserLivro(){
+        return $this->hasMany('App\Models\UserLivro', 'fk_status_id');
+    }
+
 }

@@ -25,4 +25,8 @@ class UserLivro extends Model
         'fk_livro_id',
     ];
 
+    public function relStatus(){
+        return $this->hasOne('App\Models\Status', 'id', 'fk_status_id');
+    }
+
 }

@@ -6,9 +6,13 @@ use App\Http\Controllers\AutorController;
 use App\Http\Controllers\AssuntoController;
 use App\Http\Controllers\EditoraController;
 use App\Http\Controllers\UserLivroController;
+use App\Http\Controllers\UserController;
 
 ///////////////////// ADMIN \\\\\\\\\\\\\\\\\\\\\
 
+
+///// GESTÃO
+Route::get('/admin/gestao', [UserController::class, 'usuarios']);
 
 ///// LIVROS
 // Rota para os livros cadastrados no sistema pelo admin
@@ -104,7 +108,7 @@ Route::get('/', [LivroController::class, 'index']);
 // Rota para a estante de cada usuário (página principal)
 Route::get('/estante', [UserLivroController::class, 'estante'])->middleware('auth');
 
-// Rota para um livro em detalhe
+// Rota para um livro do catálogo em detalhe
 Route::get('/livros/{id}', [LivroController::class, 'show']);
 
 // Rota para autenticação (login)
@@ -114,3 +118,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 // Rota para adicionar um livro à estante
 Route::post('/estante', [UserLivroController::class, 'adicionaLivro'])->name('adicionar');
+
+// Rota para um livro da estante em detalhe
+Route::get('/estante-detalhe/{id}', [UserLivroController::class, 'show']);
+
+Route::post('/livro-status/{id}', [UserLivroController::class, 'atualizaStatus'])->name('atualizar');

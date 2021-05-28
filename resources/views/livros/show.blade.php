@@ -29,37 +29,37 @@
                 
 
                 <!-- Modal adicionar à estante -->
-                <div class="modal fade" id="modalAddLivro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <!-- Se autenticado, poderá adicionar à estante -->
-                            
-                            
-                                @if (isset($user))
-                                <h5 class="modal-title" id="exampleModalLabel">Adicionar livro à estante</h5>
-                                <button id="btn-close-02" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
+                    <div class="modal fade" id="modalAddLivro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <!-- Se autenticado, poderá adicionar à estante -->
+                                
+                                
+                                    @if (isset($user))
+                                    <h5 class="modal-title" id="exampleModalLabel">Adicionar livro à estante</h5>
+                                    <button id="btn-close-02" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
 
-                            <div class="modal-body">
-                                Selecione um status
-                                <form action="{{ route('adicionar') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="livro_id" value="{{ $livro->id }}">
-                                <div class="form-group">    
-                                    <label for="status">Status</label>
-                                    <select class="form-control" name="status" id="status" required>
-                                        @foreach($status as $st)
-                                        
-                                        @if ($st->id == 1)
-                                        <option value="{{ $st->id }}" style="color: green; font-weight:700;">{{ $st->nome }}</option>
-                                        @elseif ($st->id == 2)
-                                            <option value="{{ $st->id }}" style="color: yellow; font-weight:700;">{{ $st->nome }}</option>
-                                            @else
-                                            <option value="{{ $st->id }}" style="color: red; font-weight:700;">{{ $st->nome }}</option>
-                                            @endif
+                                <div class="modal-body">
+                                    Selecione um status
+                                    <form action="{{ route('adicionar') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="livro_id" value="{{ $livro->id }}">
+                                    <div class="form-group">    
+                                        <label for="status">Status</label>
+                                        <select class="form-control" name="status" id="status" required>
+                                            @foreach($status as $st)
                                             
-                                            @endforeach
+                                            @if ($st->id == 1)
+                                            <option value="{{ $st->id }}" style="color: green; font-weight:700;">{{ $st->nome }}</option>
+                                            @elseif ($st->id == 2)
+                                                <option value="{{ $st->id }}" style="color: yellow; font-weight:700;">{{ $st->nome }}</option>
+                                                @else
+                                                <option value="{{ $st->id }}" style="color: red; font-weight:700;">{{ $st->nome }}</option>
+                                                @endif
+                                                
+                                                @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                 @else
                                 <h5 class="modal-title" id="exampleModalLabel">Adicionar livro à estante</h5>
                                 <button id="btn-close-02" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
+                            </div>
 
                             <div class="modal-body text-center">
                                 <p style="margin-bottom: 20px;">Faça login para adicionar o título à sua estante.</p>

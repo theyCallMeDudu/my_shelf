@@ -68,4 +68,61 @@ $(function(){
     $("#btn-close-02").click(function() {
         $("#modalAddLivro").modal('toggle');
     });
+
+    // Abrir modal troca status
+    $(".tag-status").click(function() {
+        $("#modalTrocaStatus").modal('toggle');
+    });
+
+    // Fechar modal troca de status
+    $("#btn-close-03").click(function() {
+        $("#modalTrocaStatus").modal('toggle');
+    });
+
+    // Fechar modal troca de status
+    $("#btn-close-04").click(function() {
+        $("#modalTrocaStatus").modal('toggle');
+    });
+
+    // Abrir modal troca de status em estante-detalhe
+    $("#btn-modal-troca-status").click(function(){
+        $("#modalTrocaStatus").modal('toggle');
+    });
+
+    // Menu dropdown ADMIN
+    $(".dropdown").click(function(){
+        // O que vai acontecer quando clicarmos na nav.mobile
+        //alert('Olá!');
+        var listaMenu = $('.dropdown div');
+        
+        if(listaMenu.is(':hidden') == true){
+            listaMenu.slideToggle();
+            $('.dropdown-content').style.display = "block";
+        } else {
+            listaMenu.slideToggle();
+        }
+    });
+
+    // Função que chama modal e faz requisição para troca de status
+    $(document).on('click', '#pesquisarStatus', function(e){
+        let url = $(this).data('href');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type    : "POST",
+            url     : url,
+            success : function(retorno) {
+              console.log(retorno);
+
+                  
+                 
+
+                }
+
+            });
+        });
+
 })
