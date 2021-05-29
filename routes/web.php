@@ -122,4 +122,8 @@ Route::post('/estante', [UserLivroController::class, 'adicionaLivro'])->name('ad
 // Rota para um livro da estante em detalhe
 Route::get('/estante-detalhe/{id}', [UserLivroController::class, 'show']);
 
+// Rota para atualizar status do livro de um usuário
 Route::post('/livro-status/{id}', [UserLivroController::class, 'atualizaStatus'])->name('atualizar');
+
+// Rota para 'Minha Conta' (comum a todos os usuários)
+Route::get('/minha-conta', [UserController::class, 'minhaConta']);

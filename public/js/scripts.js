@@ -89,6 +89,23 @@ $(function(){
         $("#modalTrocaStatus").modal('toggle');
     });
 
+    // Abrir modal edição de conta
+    $("#btn-user").click(function(){
+        $("#modalUser").modal('toggle');
+    });
+
+    // Fechar modal edição de conta
+    $("#btn-close-user-01").click(function(){
+        $("#modalUser").modal('toggle');
+    });
+
+    // Fechar modal edição de conta
+    $("#btn-close-user-02").click(function(){
+        $("#modalUser").modal('toggle');
+    });
+
+    
+
     // Menu dropdown ADMIN
     $(".dropdown").click(function(){
         // O que vai acontecer quando clicarmos na nav.mobile

@@ -360,6 +360,49 @@ div.card-body a:hover {
 }
 /* Estante */
 
+/* Minha Conta */
+.box-conta {
+    margin-top: 30px;
+    border: 1px solid #5A1702;
+    border-radius: 5px;
+    padding: 20px;
+    background: #ebe8e8;
+}
+
+.div-img-user {
+    width: 20%;
+    float: left;
+    margin-right: 20%;
+}
+
+.user-img {
+    width: 100%;
+    /* max-width: 200px; */
+    border-radius: 5px;
+    border-right: 3px groove;
+    border-bottom: 3px groove;
+}
+
+.div-dados-user {
+    width: 60%;
+    float: right;
+}
+
+.dados-dados-user ul {
+    list-style-type: none;
+}
+
+.dados-dados-user ul li {
+    float: left;
+}
+
+.dados-dados-user ul li i {
+    padding: 3px;
+    border: 1px groove;
+    border-radius: 4px;
+}
+/* Minha Conta */
+
 footer {
     text-align: center;
     background-color: #36160c;
@@ -400,6 +443,25 @@ footer {
         justify-content: center;
         margin-bottom: 20px;
     }
+
+    /* Minha Conta */
+    .div-img-user {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .dados-dados-user ul {
+        padding: 0;
+    }
+
+    .dados-dados-user ul li {
+        float: none;
+        margin-bottom: 10px;
+    }
+
+
+
+    /**/ 
 }
 
 @media screen and (max-width: 700px) {
@@ -477,4 +539,5 @@ footer {
     .box-ultimos img {
         height: 145px;
     } */
+
 }

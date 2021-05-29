@@ -35,6 +35,7 @@
                     @auth
                     <li><a href="/catalogo">Catálogo</a></li>
                     <li><a href="/estante">Estante</a></li>
+                    <li><a href="/minha-conta">Minha Conta</a></li>
                     @if($is_admin != null)
                     <li class="dropdown">
                         Admin
@@ -76,6 +77,7 @@
                 @auth
                     <li><a href="/catalogo">Catálogo</a></li>
                     <li><a href="/estante">Estante</a></li>
+                    <li><a href="/minha-conta">Minha Conta</a></li>
                     @if($is_admin != null)
                     <li><a href="/livros">Livros</a></li>
                     <li><a href="/assuntos">Assuntos</a></li>
