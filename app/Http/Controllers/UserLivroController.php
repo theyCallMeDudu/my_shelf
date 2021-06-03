@@ -48,11 +48,15 @@ class UserLivroController extends Controller
                                          LEFT JOIN status as s ON u.fk_status_id = s.id
                                          LEFT JOIN capa_livro as c ON l.id = c.fk_livro_id
                                          WHERE u.user_id = $user_id");
+                    
+                    $count_livros = count($livros);
 
         $user_livro = new UserLivro;
         //dd($user_livro);
+
+        //dd($count_livros);
         
-        return view('estante', compact('livros', 'search', 'user', 'is_admin', 'status', 'user_livro'));
+        return view('estante', compact('livros', 'search', 'user', 'is_admin', 'status', 'user_livro', 'count_livros'));
     }
 
     public function adicionaLivro(Request $request) {
@@ -90,8 +94,7 @@ class UserLivroController extends Controller
         return view('/estante-detalhe', compact('livro', 'status', 'user', 'user_id', 'is_admin', 'user_livro'));
     }
 
-    public function atualizaStatus($id) {
-        $response = new \stdClass();
+    public function pesquisaStatus($id) {
         
         $user_id = Auth::id();
         $livro = Livro::where('id', $id)->first();
@@ -112,8 +115,23 @@ class UserLivroController extends Controller
                                          LEFT JOIN capa_livro as c ON l.id = c.fk_livro_id
                                          WHERE u.user_id = $user_id and l.id = $id");
 
-        $response->data = $livros;
+        return $livros;
+    }
 
-        return response()->json($response);
+    public function atualizaStatus(Request $request) {
+        //dd($request->user_livro_id);
+
+        UserLivro::where(['id' => $request->user_livro_id])->update([
+            'fk_status_id' => $request->status,
+        ]);
+
+        return redirect('/estante')->with('msg', 'Status atualizado com sucesso.');
+    }
+
+    public function removeLivro(Request $request) {
+        //dd($request);
+        UserLivro::findOrFail($request->users_livro_id)->delete();
+
+        return redirect('/estante')->with('msg', 'Livro excluído com sucesso!');
     }
 }

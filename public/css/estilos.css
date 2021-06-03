@@ -117,7 +117,7 @@ nav.desktop a {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding: 0;
+    padding: 8px;
 }
 
 .box-ultimos li {
@@ -134,6 +134,50 @@ nav.desktop a {
 }
 
 /* Welcome */
+
+/* Catálogo */
+
+.pesquisa-esquerda {
+    padding: 0;
+    float:left;
+}
+
+.pesquisa-direita {
+    width: 40%;
+    padding: 0;
+    float: left;
+}
+
+.inputs-esquerda {
+    width: 80%;
+}
+
+.inputs-direita {
+    width: 80%;
+}
+
+.btn-pesquisa {
+    float: right;
+    width: 10%;
+    background-color: #ce9d5a;
+    color: #000;
+    border-radius: 5px;
+    transition: 0.4s;
+    height: 40px;
+    border: none;
+    margin-top: 22px;
+}
+
+.btn-pesquisa:hover {
+    background-color: #5A1702;
+    color: #FFF;
+}
+
+#table-catalogo {
+    margin-top:20px
+}
+
+/**/
 
 .msg {
     background-color: #D4EDDA;
@@ -186,7 +230,7 @@ nav.desktop a {
 }
 
 .capa-livro-detalhe {
-    max-width: 160px;
+    max-width: 200px;
 }
 
 div.card-body {
@@ -292,7 +336,8 @@ div.card-body a:hover {
 .capa-livro-estante {
     max-width: 100px;
     max-height: 130px;
-    margin-bottom: 34px;
+    height: 130px;
+    margin-bottom: -33px;
 }
 
 .titulo-livro-estante {
@@ -358,6 +403,23 @@ div.card-body a:hover {
     color: #FFF;
     background-color: #5A1702;
 }
+
+.hide {
+    display: block;
+    float: right;
+    margin-bottom: 29px;
+    color: red !important;
+    background-color: transparent !important;
+    border: none !important;
+}
+
+/* .card-livro:hover + .hide, .hide:hover {
+    display: block !important;
+    float: right;
+    margin-bottom: 28px;
+    background-color: red !important;
+} */
+
 /* Estante */
 
 /* Minha Conta */
@@ -370,13 +432,18 @@ div.card-body a:hover {
 }
 
 .div-img-user {
-    width: 20%;
+    width: 50%;
     float: left;
-    margin-right: 20%;
+}
+
+.div-img-user img {
+    border-right: 3px groove;
+    border-bottom: 3px groove;
+    border-radius: 5px;
 }
 
 .user-img {
-    width: 100%;
+    width: 200px;
     /* max-width: 200px; */
     border-radius: 5px;
     border-right: 3px groove;
@@ -384,22 +451,30 @@ div.card-body a:hover {
 }
 
 .div-dados-user {
-    width: 60%;
+    width: 50%;
     float: right;
 }
 
-.dados-dados-user ul {
+div.estatisticas ul {
     list-style-type: none;
+    margin-top: 20px;
 }
 
-.dados-dados-user ul li {
-    float: left;
+div.estatisticas ul li {
+    margin-bottom: 10px;
 }
 
-.dados-dados-user ul li i {
+div.estatisticas ul li i {
     padding: 3px;
     border: 1px groove;
     border-radius: 4px;
+}
+
+.div-acoes-conta {
+    float: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 /* Minha Conta */
 
@@ -448,17 +523,61 @@ footer {
     .div-img-user {
         width: 100%;
         margin-bottom: 20px;
+        text-align: center;
     }
 
-    .dados-dados-user ul {
-        padding: 0;
+    .div-img-user ul {
+        margin-top: 20px;
+        text-align: left;
     }
 
-    .dados-dados-user ul li {
+    .div-img-user ul li {
         float: none;
         margin-bottom: 10px;
     }
 
+    .div-dados-user {
+        float: none;
+        width: 100%;
+        padding: 0 30px 0 30px;
+    }
+
+    /* Catálogo */
+
+    .pesquisa-esquerda {
+        float: none;
+        width: 100%;
+        padding: 0;
+    }
+
+    .pesquisa-direita {
+        float: none;
+        width: 100%;
+    }
+
+    .inputs-esquerda {
+        width: 100%;
+    }
+
+    .inputs-direita {
+        width: 100%;
+    }
+
+    .btn-pesquisa {
+        float: none;
+        width: 100%;
+        background-color: #ce9d5a;
+        color: #000;
+        border-radius: 5px;
+        transition: 0.4s;
+        height: 40px;
+        border: none;
+        margin-top: 22px;
+    }
+
+    .col-sm-12 {
+        margin-bottom: 10px !important;
+    }
 
 
     /**/ 

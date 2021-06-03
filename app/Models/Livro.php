@@ -36,11 +36,42 @@ class Livro extends Model
         return $this->hasOne(Autor::class, 'id');
     }
 
-    public function retornoLivro($livro) {
+    public function retornoLivro($autor = null, $assunto = null, $editora = null, $titulo = null) {
         // select * from livro inner join autor on livro.fk_autor_id = autor.id;
-        $sql = "SELECT * FROM livro ";
-        $sql .= "INNER JOIN autor ";
-        $sql .= "on livro.fk_autor_id = autor.id";
+        $retorno = null;
+
+        $sql = "";
+        $sql .= "SELECT";
+        $sql .= " l.id,";
+        $sql .= " l.titulo,";
+        $sql .= " l.ano,";
+        $sql .= " c.nome as capa,";
+        $sql .= " a.nome as autor,";
+        $sql .= " e.nome as editora,";
+        $sql .= " ass.nome as assunto";
+        $sql .= " FROM livro as l";
+        $sql .= " LEFT JOIN capa_livro as c ON l.id = c.fk_livro_id";
+        $sql .= " INNER JOIN autor as a ON l.fk_autor_id = a.id";
+        $sql .= " INNER JOIN editora as e ON l.fk_editora_id = e.id";
+        $sql .= " INNER JOIN assunto as ass ON l.fk_assunto_id = ass.id";
+        $sql .= " WHERE 1 = 1 ";
+
+        if (isset($autor) && $autor != '') {
+            $sql .= " AND a.id = " .$autor;
+        }
+
+        if (isset($assunto) && $assunto != '') {
+            $sql .= " AND ass.id = " .$assunto;
+        }
+
+        if (isset($editora) && $editora != '') {
+            $sql .= " AND e.id = " .$editora;
+        }
+
+        if (isset($titulo) && $titulo != '') {
+            $sql .= " AND l.id = " .$titulo;
+        }
+        
 
         $retorno = DB::select($sql);
         return $retorno;

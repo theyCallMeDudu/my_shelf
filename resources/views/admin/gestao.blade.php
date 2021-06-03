@@ -35,11 +35,11 @@
                     
                     @if ($user->is_admin == 1)
                     <td class="text-center">
-                        <input type="checkbox" id="scales" name="scales" checked>
+                        <input class="admin-check" type="checkbox" id="admin" name="admin" value="{{ $user->id }}" checked>
                     </td>    
                     @else
                     <td class="text-center">
-                        <input type="checkbox" id="scales" name="scales">
+                        <input class="admin-check" type="checkbox" id="admin" name="admin" value="{{ $user->id }}">
                     </td>
                     @endif
                     <td>

@@ -5,39 +5,78 @@
 @section('content')
 
 <div class="center">
-    <div id="search-container" class="col-md-12 busca">
-        @if ($search)
-        <h1>Buscando por: "{{ $search }}".</h1>
-        @else
-        <h1>Catálogo</h1>
-        @endif
-        <form action="/estante" method="GET">
-            <input type="text" id="search" name="search" class="form-control" placeholder="Busque por um título">
-        </form>
-    </div>
-        
-    <div id="livros-container" class="col-md-12">
-        <div class="row">
-            @foreach ($livros as $livro)
-            <div class="card col-md-3">
-                @if (isset($livro->relCapaLivro->nome))
-                <img class="capa-livro" src="{{ asset('storage/' . $livro->relCapaLivro->nome)  }}" alt="{{ $livro->titulo }}">
-                @else
-                <img class="capa-livro" src="/img/sem_capa.png" alt="{{ $livro->titulo }}">
-                @endif
-                <div class="card-body">
-                    <h6 class="card-title">{{ $livro->titulo }}</h6>
-                    
-                    <a href="/livros/{{ $livro->id }}">Detalhes</a>
+    <h1>Catálogo</h1>   
+
+        {!! Form::open(['id' => 'pesquisaCatalogo']) !!}
+            <div class="w50 pesquisa-esquerda">
+                <div class="col-md6 inputs-esquerda">
+                    <label for="autor">Autor</label>
+                    <select name="autor" id="autor" class="form-control">
+                        <option value="">Selecione</option>
+                        @foreach ($autores as $autor)
+                        <option value="{{ $autor->id }}">{{ $autor->nome }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md6 inputs-esquerda">
+                    <label for="autor">Título</label>
+                    <select name="titulo" id="titulo" class="form-control">
+                        <option value="">Selecione</option>
+                        @foreach ($livros as $livro)
+                        <option value="{{ $livro->id }}">{{ $livro->titulo }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
-            @endforeach
-            @if (count($livros) == 0 && $search)
-            <p>Não foi possível encontrar nenhum livro com "{{ $search }}". <a href="/estante">Ver todos</a> </p>
-            @elseif (count($livros) == 0)
-            <p>Sua estante está vazia :(</p>
-            @endif
+
+            <div class="pesquisa-direita">
+                <div class="col-md6 inputs-direita">
+                    <label for="autor">Assunto</label>
+                    <select name="assunto" id="assunto" class="form-control">
+                        <option value="">Selecione</option>
+                        @foreach ($assuntos as $assunto)
+                        <option value="{{ $assunto->id }}">{{ $assunto->nome }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md6 inputs-direita">
+                    <label for="autor">Editora</label>
+                    <select name="editora" id="editora" class="form-control">
+                        <option value="">Selecione</option>
+                        @foreach ($editoras as $editora)
+                        <option value="{{ $editora->id }}">{{ $editora->nome }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            <!-- Botão pesquisa -->
+            <div class="form-group">
+                <!-- <button type="submit" class="btn-pesquisa" id="btn-pesquisa" data-href="{{ route('pesquisaCatalogo') }}">Pesquisar</button> -->
+                {{ Form::button('Pesquisar', ['class' => 'btn-pesquisa', 'id' => 'btn-pesquisa', 'data-href' => route('pesquisaCatalogo')]) }}
+                <!-- {{ Form::reset('Limpar', ['class' => 'btn btn-marg-left btn-default', 'id' => 'btnLimpar']) }} -->
+                <button type="reset" class="btn-pesquisa" id="btn-limpar">Limpar</button>
+            </div>
+        {!! Form::close() !!}
+        <div class="clear"></div>
+        
+        
+        <div style="margin-top: 50px;">
+            <table class="table table-striped" id="table-catalogo">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Autor</th>
+                        <th>Ano</th>
+                        <th>Editora</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
         </div>
-    </div>
+
 </div>
 @endsection

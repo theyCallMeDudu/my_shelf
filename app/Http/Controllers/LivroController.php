@@ -24,20 +24,20 @@ class LivroController extends Controller
     }
 
     public function catalogo() {
-        $search = request('search');
         $is_admin = Auth::user()->is_admin;
+        $autores = Autor::all();
+        $assuntos = Assunto::all();
+        $editoras = Editora::all();
+        $livros = Livro::all();
+        
+        return view('catalogo', compact('is_admin', 'autores', 'assuntos', 'editoras', 'livros'));
+    }
 
-        if ($search) {
-            
-            $livros = Livro::where([
-                ['titulo', 'like', '%'.$search.'%']
-            ])->get();
+    public function pesquisaCatalogo(Request $request) {
+        $livro = new Livro();
+        $catalogo = $livro->retornoLivro($request->autor, $request->assunto, $request->editora, $request->titulo);
 
-        } else {
-            $livros = Livro::all();
-        }
-
-        return view('catalogo', compact('livros', 'search', 'is_admin'));
+        return $catalogo;
     }
 
     public function show($id) {
@@ -51,6 +51,10 @@ class LivroController extends Controller
         //$autor = DB::select("SELECT autor.nome FROM autor INNER JOIN livro ON livro.id = $id and livro.fk_autor_id = autor.id");
 
         return view('livros.show', compact('livro', 'status', 'user', 'is_admin'));
+    }
+
+    public function bookTambemQueSeFoda($id) {
+        dd($id);
     }
 
     public function livros() {

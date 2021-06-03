@@ -39,6 +39,11 @@ Route::post('/imagem/remove', [LivroController::class, 'removeImagem'])->name('r
 // Rota para catálogo
 Route::get('/catalogo', [LivroController::class, 'catalogo']);
 
+// Rota para pesquisar no catálogo
+Route::post('/pesquisa-catalogo/{assunto?}/{titulo?}/{autor?}/{editora?}', [LivroController::class, 'pesquisaCatalogo'])->name('pesquisaCatalogo');
+
+
+
 
 ///// ASSUNTOS
 // Rota para a página de assuntos cadastrados no sistema
@@ -111,6 +116,8 @@ Route::get('/estante', [UserLivroController::class, 'estante'])->middleware('aut
 // Rota para um livro do catálogo em detalhe
 Route::get('/livros/{id}', [LivroController::class, 'show']);
 
+Route::get('/book/{id?}', [LivroController::class, 'bookTambemQueSeFoda'])->name('verBook');
+
 // Rota para autenticação (login)
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('/dashboard');
@@ -122,8 +129,27 @@ Route::post('/estante', [UserLivroController::class, 'adicionaLivro'])->name('ad
 // Rota para um livro da estante em detalhe
 Route::get('/estante-detalhe/{id}', [UserLivroController::class, 'show']);
 
+// Rota para trazer status do livro de um usuário
+Route::post('/livro-status/{id}', [UserLivroController::class, 'pesquisaStatus'])->name('pesquisar');
+
 // Rota para atualizar status do livro de um usuário
-Route::post('/livro-status/{id}', [UserLivroController::class, 'atualizaStatus'])->name('atualizar');
+Route::post('/status-update', [UserLivroController::class, 'atualizaStatus'])->name('atualizar');
 
 // Rota para 'Minha Conta' (comum a todos os usuários)
 Route::get('/minha-conta', [UserController::class, 'minhaConta']);
+
+// Rota para atualizar dados usuário
+Route::post('/minha-conta/update/{id}', [UserController::class, 'update'])->name('updateUser');
+
+// Rota para deletar editora (delete)
+Route::delete('/minha-conta/{id}', [UserController::class, 'excluiUsuario'])->name('excluir');
+
+// Rota para deletar imagem de perfil
+Route::post('/foto/remove', [UserController::class, 'removeFoto'])->name('removerFoto');
+
+
+// Rota para deletar livro da estante
+Route::post('/estante/remove', [UserLivroController::class, 'removeLivro'])->name('removerDaEstante');
+
+// Rota após deletar usuário
+Route::get('/no-user', [UserController::class, 'noUser'])->name('no-user');
