@@ -177,6 +177,22 @@ nav.desktop a {
     margin-top:20px
 }
 
+.col-sm-12 {
+    margin-bottom: 30px !important;
+}
+
+.even {
+    line-height: 70px !important;
+}
+
+.odd {
+    line-height: 70px !important;
+}
+
+#table-catalogo {
+    background: #ce9d5a;
+}
+
 /**/
 
 .msg {

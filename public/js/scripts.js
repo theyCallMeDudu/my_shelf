@@ -153,16 +153,7 @@ $(function(){
     });
 
 
-    // Função que verifica se checkbox está marcado
-    if ($(".admin-check").is(':checked')) {
-        console.log('CHECADO!');
-    }
-
-    $(".admin-check").click(function() {
-        if ($(".admin-check").is(':checked')) {
-            console.log('User ' + $('.admin-check').val() + ' CHECADO!');
-        }   
-    });
+    
 
 
     // Função que chama modal e faz requisição para troca de status
@@ -214,56 +205,88 @@ $(function(){
                 data	: $("#pesquisaCatalogo").serializeArray(),
                 success : function(retorno) {
                   console.log(retorno);
-                  
-                  var rotaVisualizar = $('#ver-livro').val();
-
-                  if ( $.fn.dataTable.isDataTable( '#table-catalogo' ) ) {
-                    table = $('#table-catalogo').DataTable();               
-                    table.destroy();
-                  }
-
-                  $('#table-catalogo').DataTable( {
-                                 
-                    "data": retorno,
-                    "columns": [
-                   { "data": "titulo" },
-                   { "data": "autor" },
-                   { "data": "ano" },
-                   { "data": "editora" },
-                   {                            
-                    "render": function(data, type, row, meta){
-                        var url = '{{ url("/book/", "id") }}';
-                        url = url.replace('id', row.id);
-
-                        
-
-                        var botoes = '<a class="btn btn-primary btn-sm" href="'+url+' "><i class="fas fa-search" data-toggle="tooltip" data-placement="top" title="Visualizar livro"></i></a>'
-                                     '<a class="btn btn-succes btn-sm" href="'+url+' "><i class="fas fa-plus" data-toggle="tooltip" data-placement="top" title="Adicionar à estante"></i></a>';
-                        return botoes;
-                    }
-
+                  $("#div-tabela-catalogo").html(retorno);
+                
+                  $('#table-catalogo').DataTable({
+                    language:{
+                        url: "//cdn.datatables.net/plug-ins/1.10.22/i18n/Portuguese-Brasil.json"
                     },
-                  
-                   ],
-
-                  //O codigo abaixo define o idioma PT_BR para a dataTable
-                  "language": {
-                    "lengthMenu": "Mostrando _MENU_ registros por página",
-                    "zeroRecords": "Nenhum registro encontrado",
-                    "info": "Mostrando página _PAGE_ de _PAGES_",
-                    "infoEmpty": "Nenhum registro disponível",
-                    "infoFiltered": "(filtrado de _MAX_ registros no total)",
-                    "search": "Pesquisar",
-                    "paginate": {
-                        "next": "Próximo",
-                        "previous": "Anterior",
-                        "first": "Primeiro",
-                        "last": "Último"
-                    },
+                  });
+                },
+                beforeSend: function() { 
+                    $('#carregar').html("<img src='/img/preloader.gif' style='width: 40px;' style='display: none; text-align: center;'> CARREGANDO");
+                },  
+                complete: function(){ 
+          
+                   $('#carregar').html("");		  
+                },		
+                error	: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert_error("Erro, Desculpe!");
                 }
-        } );	
-                    }
-                    });
-                 });
+
+            });
+        });
+
+       
+        // Clique do checkbox
+        // Verificação se está marcado (é admin) ou não
+        // Exibe "conceder acesso" para não admin
+        // E exibe "revogar acesso" para admin
+
+        $(".admin-check").click(function() {
+            if($(this).prop("checked") == true){
+                console.log("Checkbox is now checked.");
+                $("#modalAdmin").modal('toggle');
+                var id = $(this).attr('data-href');
+                $("#is_admin_id").val(id);
+            }
+            else if($(this).prop("checked") == false){
+                console.log("Checkbox is now unchecked.");
+                $("#modalNotAdmin").modal('toggle');
+                var id_not = $(this).attr('data-href');
+                $("#is_not_admin_id").val(id_not);
+            }
+
+
+            // if ($(".admin-check").is(':checked')) {
+                
+            //     console.log('Maluco admin');
+            // } else {
+               
+            //     console.log('Maluco não admin');
+            // }
+        });
+
+        // Abrir modal exclusão livro da estante
+    $(".btn-exclusao-estante").click(function() {
+        $("#modalExclusaoEstante").modal('toggle');
+        var id = $(this).attr('data-href');
+        $("#deleteId").val(id);
+    });
+
+        // Fechar modal conceder acesso admin
+        $("#btn-close-admin-01").click(function() {
+            $("#modalAdmin").modal('toggle');
+        });
+
+        // Fechar modal conceder acesso admin
+        $("#btn-close-admin-02").click(function() {
+            $("#modalAdmin").modal('toggle');
+        });
+
+        // Fechar modal revogar acesso admin
+        $("#btn-close-admin-03").click(function() {
+            $("#modalNotAdmin").modal('toggle');
+        });
+
+        // Fechar modal revogar acesso admin
+        $("#btn-close-admin-04").click(function() {
+            $("#modalNotAdmin").modal('toggle');
+        });
+
+
+        
+        
+        
 
 });

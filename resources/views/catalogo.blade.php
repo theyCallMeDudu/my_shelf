@@ -60,22 +60,10 @@
         {!! Form::close() !!}
         <div class="clear"></div>
         
-        
-        <div style="margin-top: 50px;">
-            <table class="table table-striped" id="table-catalogo">
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Autor</th>
-                        <th>Ano</th>
-                        <th>Editora</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <div id="carregar">
+        </div>
 
-                </tbody>
-            </table>
+        <div id="div-tabela-catalogo" style="margin-top: 30px;">
         </div>
 
 </div>

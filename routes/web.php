@@ -14,6 +14,12 @@ use App\Http\Controllers\UserController;
 ///// GESTÃO
 Route::get('/admin/gestao', [UserController::class, 'usuarios']);
 
+// Rota para conceder acesso de administrador
+Route::post('/user/admin', [UserController::class, 'concedeAcesso'])->name('isAdmin');
+
+// Rota para revogar acesso de administrador
+Route::post('/user/notadmin', [UserController::class, 'revogaAcesso'])->name('isNotAdmin');
+
 ///// LIVROS
 // Rota para os livros cadastrados no sistema pelo admin
 Route::get('/livros', [LivroController::class, 'livros'])->middleware('admin');
@@ -114,9 +120,8 @@ Route::get('/', [LivroController::class, 'index']);
 Route::get('/estante', [UserLivroController::class, 'estante'])->middleware('auth');
 
 // Rota para um livro do catálogo em detalhe
-Route::get('/livros/{id}', [LivroController::class, 'show']);
+Route::get('/livros/{id?}', [LivroController::class, 'show'])->name('verBook');
 
-Route::get('/book/{id?}', [LivroController::class, 'bookTambemQueSeFoda'])->name('verBook');
 
 // Rota para autenticação (login)
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

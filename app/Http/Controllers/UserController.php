@@ -135,4 +135,22 @@ class UserController extends Controller
         return view('no-user');
     }
 
+    public function concedeAcesso(Request $request){
+        //dd($request->user_id);
+        User::where(['id' => $request->user_id])->update([
+            'is_admin' => 1,
+        ]);
+
+        return redirect('/admin/gestao')->with('msg', 'Acesso concedido com sucesso!');
+    }
+
+    public function revogaAcesso(Request $request){
+        //dd($request->user_id_not);
+        User::where(['id' => $request->user_id_not])->update([
+            'is_admin' => null,
+        ]);
+
+        return redirect('/admin/gestao')->with('msg', 'Acesso revogado com sucesso!');
+    }
+
 }

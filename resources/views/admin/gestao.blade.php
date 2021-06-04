@@ -35,11 +35,11 @@
                     
                     @if ($user->is_admin == 1)
                     <td class="text-center">
-                        <input class="admin-check" type="checkbox" id="admin" name="admin" value="{{ $user->id }}" checked>
+                        <input class="admin-check" data-href="{{ $user->id }}" type="checkbox" id="admin" name="admin" value="{{ $user->id }}" checked>
                     </td>    
                     @else
                     <td class="text-center">
-                        <input class="admin-check" type="checkbox" id="admin" name="admin" value="{{ $user->id }}">
+                        <input class="admin-check" data-href="{{ $user->id }}" type="checkbox" id="admin" name="admin" value="{{ $user->id }}">
                     </td>
                     @endif
                     <td>
@@ -65,4 +65,56 @@
         </table>
     </div>
 </div>
+
+
+<!-- Modal tornar admin -->
+<div class="modal fade" id="modalAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Conceder acesso de administrador</h5>
+                    <button id="btn-close-admin-01" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <p>Deseja conceder acesso de administrador a este usuário?</p>
+                    <form action='/user/admin' method="POST">
+                        @csrf
+                        <input type="hidden" name="user_id" id="is_admin_id">                       
+                        <div>
+                            <button id="btn-close-admin-02" type="button" class="btn btn-success" data-bs-dismiss="modal">Não</button>
+                            <button type="submit" class="btn btn-danger">Sim</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal revogar admin -->
+<div class="modal fade" id="modalNotAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Revogar acesso de administrador</h5>
+                    <button id="btn-close-admin-03" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <p>Deseja revogar o acesso de administrador deste usuário?</p>
+                    
+                    <form action='/user/notadmin' method="POST">
+                        @csrf
+                        <input type="hidden" name="user_id_not" id="is_not_admin_id">
+                        <div>
+                            <button id="btn-close-admin-04" type="button" class="btn btn-success" data-bs-dismiss="modal">Não</button>
+                            <button type="submit" class="btn btn-danger">Sim</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
 @endsection

@@ -37,7 +37,51 @@ class LivroController extends Controller
         $livro = new Livro();
         $catalogo = $livro->retornoLivro($request->autor, $request->assunto, $request->editora, $request->titulo);
 
-        return $catalogo;
+        $resultado = "";
+        $resultado .="<table class='table table-bordered text-center' id='table-catalogo'>";
+        $resultado .="<thead>";
+        $resultado .="<tr>";        
+        // $resultado .="<th>Id</th>";       
+        $resultado .="<th>Título</th>";
+        $resultado .="<th>Autor</th>";
+        $resultado .="<th>Ano</th>";
+        $resultado .="<th>Editora</th>";
+        $resultado .="<th>Capa</th>";
+        $resultado .="<th>Ações</th>"; 
+        $resultado .="</tr>";
+        $resultado .="</thead>";
+        $resultado .="<tbody>";
+            if ($catalogo != null) {
+                foreach($catalogo as $cat) {
+                    $resultado .="<tr>";
+                    // $resultado .="<td> {$cat->id}</td>";
+                    $resultado .="<td> {$cat->titulo}</td>";
+                    $resultado .="<td> {$cat->autor}</td>";
+                    $resultado .="<td> {$cat->ano}</td>";
+                    $resultado .="<td> {$cat->editora}</td>";
+                    if ($cat->capa != null) {
+                        $resultado .="<td> <img class='capa-livro-estante' src=" .asset('storage/' . $cat->capa). " style='width:45px; height:55px; margin-bottom: 1px;'  alt=" .$cat->titulo. "> </td>";    
+                    } else {
+                        $resultado .="<td> <img class='capa-livro-estante' src= '/img/sem_capa.png' style='width:45px; height:55px; margin-bottom: 1px;' alt=" .$cat->titulo. "> </td>";
+                    }
+                    $resultado .="<td><a class='btn btn-primary btn-sm' style='background: black; border: none; margin-top:10px;' href=".'/livros/'. $cat->id ."><i class='fas fa-search' data-toggle='tooltip' data-placement='top' title='Visualizar livro'></i></a>&nbsp";
+                    $resultado .="</tr>";
+                }
+            }
+            else {
+                $resultado.="<tr>";
+                $resultado.="<th>";
+                $resultado.="<div class='header'>";
+                $resultado.="<h6 class='title'>Nenhum Registro Encontrado</h6>";
+                $resultado.="</div>";
+                $resultado.="</th>";
+                $resultado.="</tr>";
+            }
+
+        $resultado .="</tbody>";
+        $resultado .="</table>";
+
+        echo $resultado;
     }
 
     public function show($id) {
@@ -51,10 +95,6 @@ class LivroController extends Controller
         //$autor = DB::select("SELECT autor.nome FROM autor INNER JOIN livro ON livro.id = $id and livro.fk_autor_id = autor.id");
 
         return view('livros.show', compact('livro', 'status', 'user', 'is_admin'));
-    }
-
-    public function bookTambemQueSeFoda($id) {
-        dd($id);
     }
 
     public function livros() {

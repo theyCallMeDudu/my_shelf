@@ -63,12 +63,18 @@ class UserLivroController extends Controller
         $user_livro = new UserLivro;
         $livro = Livro::findOrFail($request->livro_id);
         $user = Auth::id();
+        $count_livro = UserLivro::where('user_id', $user)->where('fk_livro_id', $request->livro_id)->count();
+        //dd($count_livro);
 
-        $user_livro->user_id = $user;
-        $user_livro->fk_status_id = $request->status;
-        $user_livro->fk_livro_id = $livro->id;
-
-        $user_livro->save();
+        if ($count_livro != 0) {
+            return redirect('/catalogo')->with('msg', 'O livro já está na sua estante!');
+        } else {
+            $user_livro->user_id = $user;
+            $user_livro->fk_status_id = $request->status;
+            $user_livro->fk_livro_id = $livro->id;
+    
+            $user_livro->save();
+        }
 
         return redirect('/estante')->with('msg', 'Livro adicionado à estante!');
     }
