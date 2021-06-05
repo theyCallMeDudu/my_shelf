@@ -55,7 +55,7 @@
                 <!-- <button type="submit" class="btn-pesquisa" id="btn-pesquisa" data-href="{{ route('pesquisaCatalogo') }}">Pesquisar</button> -->
                 {{ Form::button('Pesquisar', ['class' => 'btn-pesquisa', 'id' => 'btn-pesquisa', 'data-href' => route('pesquisaCatalogo')]) }}
                 <!-- {{ Form::reset('Limpar', ['class' => 'btn btn-marg-left btn-default', 'id' => 'btnLimpar']) }} -->
-                <button type="reset" class="btn-pesquisa" id="btn-limpar">Limpar</button>
+                <button type="reset" class="btn-pesquisa" id="btnLimpar">Limpar</button>
             </div>
         {!! Form::close() !!}
         <div class="clear"></div>
@@ -63,7 +63,7 @@
         <div id="carregar">
         </div>
 
-        <div id="div-tabela-catalogo" style="margin-top: 30px;">
+        <div id="div-tabela-catalogo" style="margin-top: 30px;" class="corpo">
         </div>
 
 </div>

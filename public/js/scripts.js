@@ -285,6 +285,20 @@ $(function(){
         });
 
 
+        // Deixar a combo com pesquisa dinâmica
+        $('select').select2({
+            theme: 'bootstrap4'
+        });
+
+        // Função limpar pesquisa
+        $('#btnLimpar').click(function(){
+            $('select').find('option').prop('selected', function() {
+              return this.defaultSelected;
+        });
+
+        $('select').trigger('change.select2');
+
+        });
         
         
         

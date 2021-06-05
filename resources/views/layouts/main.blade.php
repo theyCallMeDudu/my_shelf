@@ -18,6 +18,14 @@
 
         <!-- CSS DATA-TABLE -->
         <link rel="stylesheet" href=" {{asset('DataTables/datatables-bs4/css/dataTables.bootstrap4.css')}} ">
+
+        <!-- CSS SELECT2 -->
+        <link rel="stylesheet" href=" {{asset('dist/css/select2.css')}} ">
+        <!-- CSS MIN SELECT2 -->
+        <link rel="stylesheet" href=" {{asset('dist/css/select2.min.css')}} ">
+        <!-- CSS BOOTSTRAP SELECT2 -->
+        <link rel="stylesheet" href=" {{asset('dist/css/select2-bootstrap4.css')}} ">
+        <!-- <link rel="stylesheet" href=" {{asset('dist/css/select2-bootstrap.min.css')}} "> -->
     </head>
     <body>
     <header>
@@ -94,7 +102,7 @@
                         </a>
                     </li>
                         </form>    
-                    @endauth
+                @endauth
                     
                     @guest
                     <li><a href="/login">Entrar</a></li>
@@ -108,14 +116,19 @@
     <main>
         @if (session('msg'))
             <p class="msg">{{ session('msg') }}</p>
+        @elseif (session('msg-warning'))
+            <p class="msg-warning">{{ session('msg-warning') }}</p>
+        @elseif (session('msg-erro'))
+            <p class="msg-erro">{{ session('msg-erro') }}</p>
         @endif
         @yield('content')
     </main>
-          <!-- <footer>
-            <p style="margin: 0; font-size: 12pt; font-weight: 300;">
-                MyShelf &copy; 2021
-            </p>
-          </footer>  -->
+
+    <footer>
+        <p style="margin: 0; font-size: 12pt; font-weight: 300;">
+            MyShelf &copy; 2021
+        </p>
+    </footer> 
           
           
           <!-- jQuery do sistema -->
@@ -127,6 +140,10 @@
 
           <!-- JavaScript do sistema -->
           <script src="/js/scripts.js"></script>
+
+          <!-- JS SELECT2 -->
+          <script src="{{ asset('dist/js/select2.full.js') }}"></script>
+          
 
         
 

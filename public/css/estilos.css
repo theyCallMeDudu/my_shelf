@@ -39,6 +39,23 @@ body {
     clear: both;
 }
 
+.corpo {
+    position: relative;
+    min-height: 100vh;
+}
+
+footer {
+    text-align: center;
+    background-color: #36160c;
+    color: #FFF;
+    padding: 20px;
+    bottom: 0;
+    position: inherit;
+    width: 100%;
+    display: block;
+    /* top: 285px; */
+}
+
 /* Estilização do sistema */
 
 header {
@@ -205,6 +222,26 @@ nav.desktop a {
     padding: 10px;
 }
 
+.msg-erro {
+    background-color: #eec5c5;
+    color: #571515;
+    border: 1px solid #e6c3c3;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+.msg-warning {
+    background-color: #eeed9b;
+    color: #5a5514;
+    border: 1px solid #e6e4c3;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: center;
+    padding: 10px;
+}
+
 .novo-livro {
     margin-bottom: 10px;
 }
@@ -231,6 +268,7 @@ nav.desktop a {
 #livros-container {
     margin-top: 10px;
     padding: 8px;
+    min-height: 100vh;
 }
 
 #livros-container .card {
@@ -291,6 +329,7 @@ div.card-body a:hover {
 #info-container {
     background: #ce9d5a;
     padding: 6px 0 6px 20px;
+    border-radius: 5px;
 }
 
 .capa-detalhe {
@@ -445,6 +484,7 @@ div.card-body a:hover {
     border-radius: 5px;
     padding: 20px;
     background: #ebe8e8;
+    margin-bottom: 50px;
 }
 
 .div-img-user {
@@ -494,16 +534,7 @@ div.estatisticas ul li i {
 }
 /* Minha Conta */
 
-footer {
-    text-align: center;
-    background-color: #36160c;
-    color: #FFF;
-    padding: 20px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    display: none;
-}
+
 
 /* Edit page */
 .img-preview {

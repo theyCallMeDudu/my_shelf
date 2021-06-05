@@ -16,13 +16,15 @@
             <span class="sr-only">Previous</span>
         </a>
         <div class="carousel-item active">
-            <img class="d-block w-100" src="/img/banner_01.png" alt="First slide">
+            <img class="d-block w-100" src="/img/banner_01.png" alt="Slide Todas as suas leituras em um só lugar">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="/img/banner_02.png" alt="Second slide">
+                <img class="d-block w-100" src="/img/banner_02.png" alt="Imagem de óculos sobre pilha de livros retirada de freepik.com">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="/img/banner_03.png" alt="Third slide">
+            <a href="/register">
+                <img class="d-block w-100" src="/img/banner_03.png" alt="Slide cadastre-se">
+            </a>
         </div>
         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
@@ -33,15 +35,15 @@
 
 <div class="box-ultimos center">
     <h5>Últimos títulos cadastrados</h5>
-    <div style="background-color: #ce9d5a; padding: 10px 0 0 10px;">
+    <div style="background-color: #ce9d5a; padding: 10px 0 0 10px; margin-bottom: 50px;">
         <ul>
             @foreach ($ultimos as $ultimo)
             <li>
                 <a href="/livros/{{ $ultimo->id }}">
                     @if (isset($ultimo->relCapaLivro->nome))
-                    <img class="capa-livro" src="{{ asset('storage/' . $ultimo->relCapaLivro->nome)  }}" alt="{{ $ultimo->titulo }}">
+                    <img class="capa-livro" src="{{ asset('storage/' . $ultimo->relCapaLivro->nome)  }}" alt="{{ $ultimo->titulo }}" title="{{ $ultimo->titulo }}">
                     @else
-                    <img class="capa-livro" src="/img/sem_capa.png" alt="{{ $ultimo->titulo }}">
+                    <img class="capa-livro" src="/img/sem_capa.png" alt="{{ $ultimo->titulo }}" title="{{ $ultimo->titulo }}">
                     @endif
                 </a>
             </li>

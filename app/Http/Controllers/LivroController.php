@@ -88,7 +88,12 @@ class LivroController extends Controller
         $livro = Livro::findOrFail($id);
         $status = Status::all();
         $user = Auth::id();
-        $is_admin = Auth::user()->is_admin;
+        
+        if (Auth::check()) {
+            $is_admin = Auth::user()->is_admin;
+        } else {
+            return redirect('/')->with('msg-erro', 'Faça login para continuar.');
+        }
 
         //$autor = new Autor();
 

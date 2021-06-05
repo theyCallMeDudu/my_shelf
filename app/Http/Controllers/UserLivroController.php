@@ -67,7 +67,7 @@ class UserLivroController extends Controller
         //dd($count_livro);
 
         if ($count_livro != 0) {
-            return redirect('/catalogo')->with('msg', 'O livro já está na sua estante!');
+            return redirect('/catalogo')->with('msg-warning', 'O livro já está na sua estante!');
         } else {
             $user_livro->user_id = $user;
             $user_livro->fk_status_id = $request->status;
