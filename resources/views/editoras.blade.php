@@ -7,7 +7,11 @@
     <div class="center">
         <!-- div busca -->
         <div id="search-container" class="col-md-12 busca">
+            @if ($search)
+            <h1>Buscando por: {{ $search }}</h1>    
+            @else
             <h1>Editoras</h1>
+            @endif
             <div class="right">
                 <a href="/editoras/create">
                     <button data-toggle="tooltip" data-placement="top" title="Nova editora" class="btn-livros novo-livro">
@@ -16,8 +20,10 @@
                 </a>
             </div>
             <div class="clear"></div>
-            <form action="">
-                <input type="text" id="search" name="search" class="form-control" placeholder="Buscar">
+            <form action="/editoras" method="GET" >
+                <input type="text" id="search_editora" name="search-editora" class="form-control form-search" placeholder="Busque por uma editora">
+                <input type="submit" class="btn-search" value="Pesquisar">
+                <div class="clear"></div>
             </form>
         </div>
 
@@ -56,6 +62,11 @@
                     </td>
                 </tr>
                 @endforeach
+                @if (count($editoras) == 0 && $search)
+                    <p>Não encontramos nenhuma editora com "{{ $search }}". <a href="/editoras">Ver todas.</a></p>
+                @elseif (count($editoras) == 0)
+                    <p>Não há editoras disponíveis.</p>
+                @endif
             </tbody>
         </table>
     </div>

@@ -45,8 +45,11 @@ Route::post('/imagem/remove', [LivroController::class, 'removeImagem'])->name('r
 // Rota para catálogo
 Route::get('/catalogo', [LivroController::class, 'catalogo']);
 
-// Rota para pesquisar no catálogo
+// Rota para pesquisar no catálogo de forma dinâmica
 Route::post('/pesquisa-catalogo/{assunto?}/{titulo?}/{autor?}/{editora?}', [LivroController::class, 'pesquisaCatalogo'])->name('pesquisaCatalogo');
+
+// Rota para pesquisar em livros de forma dinâmica (admin)
+//Route::post('/pesquisa-livros/{assunto?}/{titulo?}/{autor?}/{editora?}', [LivroController::class, 'pesquisaLivros'])->name('pesquisaLivros');
 
 
 

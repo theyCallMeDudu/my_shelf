@@ -541,6 +541,31 @@ div.estatisticas ul li i {
     width: 100px;
 }
 
+/* Livros */
+.form-search {
+    width: 75% !important;
+    margin-right: 5%;
+    float: left;
+}
+
+.btn-search {
+    width: 10%;
+    float: right;
+    background-color: #ce9d5a;
+    color: #000;
+    border-radius: 5px;
+    transition: 0.4s;
+    height: 40px;
+    border: none;
+}
+
+.btn-search:hover {
+    background-color: #5A1702;
+    color: #FFF;
+}
+
+
+
 @media screen and (max-width: 768px) {    
     .w50 {
         padding: 20px;

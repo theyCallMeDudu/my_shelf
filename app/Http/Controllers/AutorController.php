@@ -9,12 +9,24 @@ use Illuminate\Support\Facades\Auth;
 class AutorController extends Controller
 {
     public function autores() {
-        $autores = Autor::all();
         $is_admin = Auth::user()->is_admin;
-        //dd($livros);
         
-        //return view('livros', ['livros' => $livros]);
-        return view('autores', compact('autores', 'is_admin'));
+        
+        $search = request('search-autor');
+        
+        if ($search) {
+            
+            $autores = Autor::where([
+                ['nome', 'like', '%'.$search.'%']
+            ])->get();
+                
+        } else {
+
+            $autores = Autor::all();
+
+        }
+
+        return view('autores', compact('autores', 'is_admin', 'search'));
     }
 
     public function create() {

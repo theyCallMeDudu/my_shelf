@@ -5,14 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Assunto;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AssuntoController extends Controller
 {
     public function assuntos() {
-        $assuntos = Assunto::all();
         $is_admin = Auth::user()->is_admin;
 
-        return view('assuntos', compact('assuntos', 'is_admin'));
+        $search = request('search-assunto');
+
+        if ($search) {
+
+            $assuntos = Assunto::where([
+                ['nome', 'like', '%'.$search.'%']
+            ])->get();
+
+        } else {
+            $assuntos = Assunto::all();
+        }
+
+        return view('assuntos', compact('is_admin', 'assuntos', 'search'));
     }
 
     public function create() {

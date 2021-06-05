@@ -194,6 +194,55 @@ $(function(){
             });
         });
 
+       
+        // Clique do checkbox
+        // Verificação se está marcado (é admin) ou não
+        // Exibe "conceder acesso" para não admin
+        // E exibe "revogar acesso" para admin
+
+        $(".admin-check").click(function() {
+            if($(this).prop("checked") == true){
+                console.log("Checkbox is now checked.");
+                $("#modalAdmin").modal('toggle');
+                var id = $(this).attr('data-href');
+                $("#is_admin_id").val(id);
+            }
+            else if($(this).prop("checked") == false){
+                console.log("Checkbox is now unchecked.");
+                $("#modalNotAdmin").modal('toggle');
+                var id_not = $(this).attr('data-href');
+                $("#is_not_admin_id").val(id_not);
+            }
+        });
+
+        // Abrir modal exclusão livro da estante
+    $(".btn-exclusao-estante").click(function() {
+        $("#modalExclusaoEstante").modal('toggle');
+        var id = $(this).attr('data-href');
+        $("#deleteId").val(id);
+    });
+
+        // Fechar modal conceder acesso admin
+        $("#btn-close-admin-01").click(function() {
+            $("#modalAdmin").modal('toggle');
+        });
+
+        // Fechar modal conceder acesso admin
+        $("#btn-close-admin-02").click(function() {
+            $("#modalAdmin").modal('toggle');
+        });
+
+        // Fechar modal revogar acesso admin
+        $("#btn-close-admin-03").click(function() {
+            $("#modalNotAdmin").modal('toggle');
+        });
+
+        // Fechar modal revogar acesso admin
+        $("#btn-close-admin-04").click(function() {
+            $("#modalNotAdmin").modal('toggle');
+        });
+
+
         // Pesquisa catálogo
         $(document).on('click', '#btn-pesquisa', function(){
             let url = $(this).data('href');
@@ -226,64 +275,6 @@ $(function(){
 
             });
         });
-
-       
-        // Clique do checkbox
-        // Verificação se está marcado (é admin) ou não
-        // Exibe "conceder acesso" para não admin
-        // E exibe "revogar acesso" para admin
-
-        $(".admin-check").click(function() {
-            if($(this).prop("checked") == true){
-                console.log("Checkbox is now checked.");
-                $("#modalAdmin").modal('toggle');
-                var id = $(this).attr('data-href');
-                $("#is_admin_id").val(id);
-            }
-            else if($(this).prop("checked") == false){
-                console.log("Checkbox is now unchecked.");
-                $("#modalNotAdmin").modal('toggle');
-                var id_not = $(this).attr('data-href');
-                $("#is_not_admin_id").val(id_not);
-            }
-
-
-            // if ($(".admin-check").is(':checked')) {
-                
-            //     console.log('Maluco admin');
-            // } else {
-               
-            //     console.log('Maluco não admin');
-            // }
-        });
-
-        // Abrir modal exclusão livro da estante
-    $(".btn-exclusao-estante").click(function() {
-        $("#modalExclusaoEstante").modal('toggle');
-        var id = $(this).attr('data-href');
-        $("#deleteId").val(id);
-    });
-
-        // Fechar modal conceder acesso admin
-        $("#btn-close-admin-01").click(function() {
-            $("#modalAdmin").modal('toggle');
-        });
-
-        // Fechar modal conceder acesso admin
-        $("#btn-close-admin-02").click(function() {
-            $("#modalAdmin").modal('toggle');
-        });
-
-        // Fechar modal revogar acesso admin
-        $("#btn-close-admin-03").click(function() {
-            $("#modalNotAdmin").modal('toggle');
-        });
-
-        // Fechar modal revogar acesso admin
-        $("#btn-close-admin-04").click(function() {
-            $("#modalNotAdmin").modal('toggle');
-        });
-
 
         // Deixar a combo com pesquisa dinâmica
         $('select').select2({

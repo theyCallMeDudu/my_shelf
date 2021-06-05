@@ -103,22 +103,21 @@ class LivroController extends Controller
     }
 
     public function livros() {
-        $livros = Livro::all();
-        $autores = Autor::all();
         $is_admin = Auth::user()->is_admin;
+
+        $search = request('search');
+
+        if ($search) {
+
+            $livros = Livro::where([
+                ['titulo', 'like', '%'.$search.'%']
+            ])->get();
+
+        } else {
+            $livros = DB::select("SELECT l.id, l.titulo, l.ano, a.nome FROM livro as l INNER JOIN autor as a ON l.fk_autor_id = a.id;");
+        }
         
-        // dd($livros->relAutor->nome);
-
-        //$livros = new Livro();
-        //$livros->retornoLivro('');
-        // dd($teste->retornoLivro(''));
-
-        $livros = DB::select("SELECT l.id, l.titulo, l.ano, a.nome FROM livro as l INNER JOIN autor as a ON l.fk_autor_id = a.id;");
-        //$livros = DB::select('select * from livro');
-        //dd($livros);
-
-        //return view('livros', ['livros' => $livros]);
-        return view('livros', compact('livros', 'autores', 'is_admin'));
+        return view('livros', compact('livros', 'is_admin', 'search'));
     }
 
     public function create() {

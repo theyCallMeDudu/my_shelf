@@ -9,10 +9,21 @@ use Illuminate\Support\Facades\Auth;
 class EditoraController extends Controller
 {
     public function editoras() {
-        $editoras = Editora::all();
         $is_admin = Auth::user()->is_admin;
 
-        return view('editoras', compact('editoras', 'is_admin'));
+        $search = request('search-editora');
+
+        if ($search) {
+
+            $editoras = Editora::where([
+                ['nome', 'like', '%'.$search.'%']
+            ])->get();
+
+        } else {
+            $editoras = Editora::all();
+        }
+
+        return view('editoras', compact('editoras', 'is_admin', 'search'));
     }
 
     public function create() {
