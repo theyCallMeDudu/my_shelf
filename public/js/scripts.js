@@ -277,7 +277,19 @@ $(function(){
         });
 
         // Deixar a combo com pesquisa dinâmica
-        $('select').select2({
+        $('#autor').select2({
+            theme: 'bootstrap4'
+        });
+
+        $('#titulo').select2({
+            theme: 'bootstrap4'
+        });
+
+        $('#assunto').select2({
+            theme: 'bootstrap4'
+        });
+
+        $('#editora').select2({
             theme: 'bootstrap4'
         });
 

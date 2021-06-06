@@ -95,11 +95,19 @@ class LivroController extends Controller
             return redirect('/')->with('msg-erro', 'Faça login para continuar.');
         }
 
-        //$autor = new Autor();
+        // Busca por livro na estante do usuário
+        $is_estante_user = DB::select("SELECT
+                                            l.id as livro_id
+                                        FROM users_livro as u
+                                        INNER JOIN livro as l ON u.fk_livro_id = l.id 
+                                        WHERE u.user_id = $user AND l.id = $id");
+        
+        // Pegando quantidade de itens no array
+        $is_estante_user = count($is_estante_user);
 
-        //$autor = DB::select("SELECT autor.nome FROM autor INNER JOIN livro ON livro.id = $id and livro.fk_autor_id = autor.id");
+        //dd(count($is_estante_user));
 
-        return view('livros.show', compact('livro', 'status', 'user', 'is_admin'));
+        return view('livros.show', compact('livro', 'status', 'user', 'is_admin', 'is_estante_user'));
     }
 
     public function livros() {

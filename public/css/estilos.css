@@ -318,6 +318,7 @@ div.card-body a:hover {
 
 .div-detalhe-livro {
     margin-top: 20px;
+    min-height: 100vh;
 }
 
 #capa-container {
@@ -387,6 +388,10 @@ div.card-body a:hover {
 }
 
 /* Estante */
+
+.div-estante {
+    min-height: 80vh;
+}
 
 .capa-livro-estante {
     max-width: 100px;

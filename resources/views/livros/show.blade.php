@@ -19,13 +19,20 @@
                 <p>Ano: {{ $livro->ano }}</p>
                 <p>Páginas: {{ $livro->paginas }}</p>
                 <p>Assunto: {{ $livro->relAssunto->nome }}</p>
+            
+                    @if ($is_estante_user > 0)
+                    <div>
+                        <p style="display: inline; margin-right: 10px;">Este livro já está na sua estante</p><i class="fas fa-check-circle"></i>
+                    </div>
+                    @else
+                    <div>
+                        <button id="btn-modal-add-livro" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddLivro">
+                            <i class="fas fa-plus"></i>
+                            Adicionar à estante
+                        </button>
+                    </div>
+                    @endif
                 
-                <div>
-                    <button id="btn-modal-add-livro" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddLivro">
-                        <i class="fas fa-plus"></i>
-                        Adicionar à estante
-                    </button>
-                </div>
                 
 
                 <!-- Modal adicionar à estante -->

@@ -4,17 +4,9 @@
 
 @section('content')
 
-<div class="center">
-    <div id="search-container" class="col-md-12 busca">
-        @if ($search)
-        <h1>Buscando por: "{{ $search }}".</h1>
-        @else
-        <h1>Estante de {{ $user->name }}</h1>
-        @endif
-        <form action="/estante" method="GET">
-            <input type="text" id="search" name="search" class="form-control" placeholder="Busque por um título">
-        </form>
-    </div>
+<div class="center div-estante">
+    
+    <h1 style="margin-top: 30px;">Estante de {{ $user->name }}</h1>
     
     @if ($count_livros == 0)
     <h6>Sua estante ainda está vazia :(</h6>
@@ -76,7 +68,7 @@
                         </button>
                     </div>
                 </div>
-                <a class="card-detalhe" href="/estante-detalhe/{{ $livro->id }}">Detalhes</a>
+                <a class="card-detalhe" href="/livros/{{ $livro->id }}">Detalhes</a>
             </div>
             @endforeach
             @if (count($livros) == 0 && $search)

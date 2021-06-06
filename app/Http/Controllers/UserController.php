@@ -22,7 +22,7 @@ class UserController extends Controller
     public function minhaConta() {
         $user = Auth::user();
         $user_id = Auth::id();
-        $is_admin = $user_id;
+        $is_admin = Auth::user()->is_admin;
         $status = Status::all();
         
         // Join livros lidos
@@ -54,27 +54,6 @@ class UserController extends Controller
         ->join('users', 'u.user_id', '=', 'users.id')
         ->whereIn('users.id', [$user_id])
         ->count();
-
-        // $totalOpen = DB::table('job as j')
-        //        ->join('miviswf as w', 'w.mivisid', '=', 'j.mivisjobid')
-        //        ->whereIn('w.status', ['OPEN', 'AMEND'])
-        //        ->count();
-
-        // DB::table('website_tags')
-        // ->join('assigned_tags', 'website_tags.id', '=', 'assigned_tags.tag_id')
-        // ->select('website_tags.id as id', 'website_tags.title as title', DB::raw("count(assigned_tags.tag_id) as count"))
-        // ->groupBy('website_tags.id')
-        // ->get();
-        
-        //$livros = '';
-        // $livros = DB::select("SELECT  
-        //                         u.user_id, 
-        //                         u.fk_status_id, 
-        //                         s.id as status_id,
-        //                         s.nome as status,
-        //                      FROM users_livro as u
-        //                      INNER JOIN status as s ON u.fk_status_id = s.id
-        //                      WHERE u.user_id = $user_id and status = 'Lido'");
         
         return view('minha-conta', compact('user', 'is_admin', 'status', 'lidos', 'lendo', 'ler', 'total'));
     }
@@ -102,7 +81,6 @@ class UserController extends Controller
 
         return redirect('minha-conta')->with('msg', 'Foto de perfil removida com sucesso.');
     }
-
 
     public function update(Request $request) {
 
