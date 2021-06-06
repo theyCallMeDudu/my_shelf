@@ -473,6 +473,10 @@ div.card-body a:hover {
     border: none !important;
 }
 
+.card-livro {
+    background-color: beige !important;
+}
+
 /* .card-livro:hover + .hide, .hide:hover {
     display: block !important;
     float: right;

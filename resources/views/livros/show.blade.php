@@ -22,7 +22,10 @@
             
                     @if ($is_estante_user > 0)
                     <div>
-                        <p style="display: inline; margin-right: 10px;">Este livro já está na sua estante</p><i class="fas fa-check-circle"></i>
+                        <p style="display: inline; margin-right: 10px;">
+                            Este livro já está na sua estante
+                        </p>
+                        <i class="fas fa-check-circle" style="color: #0d6efd; background: white; border-radius: 10px;"></i>
                     </div>
                     @else
                     <div>
