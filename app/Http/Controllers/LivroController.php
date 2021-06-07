@@ -203,6 +203,7 @@ class LivroController extends Controller
     public function update(Request $request) {
 
         $data = $request->all();
+        //dd($data);
         
         // Upload de imagem
         if ($request->hasFile('image')) {
@@ -212,9 +213,9 @@ class LivroController extends Controller
                  'nome' => $capa,
                  'fk_livro_id' => $request->id
             ]);
-         }
+        }
         
-        Livro::findOrFail($request->id)->update($data);
+        Livro::find($request->id)->update($data);
 
         return redirect('/livros')->with('msg', 'Livro editado com sucesso!');
 

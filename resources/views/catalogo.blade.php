@@ -11,7 +11,7 @@
             <div class="w50 pesquisa-esquerda">
                 <div class="col-md6 inputs-esquerda">
                     <label for="autor">Autor</label>
-                    <select name="autor" id="autor" class="form-control">
+                    <select name="autor" id="autor-catalogo" class="form-control">
                         <option value="">Selecione</option>
                         @foreach ($autores as $autor)
                         <option value="{{ $autor->id }}">{{ $autor->nome }}</option>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-md6 inputs-esquerda">
                     <label for="autor">Título</label>
-                    <select name="titulo" id="titulo" class="form-control">
+                    <select name="titulo" id="titulo-catalogo" class="form-control">
                         <option value="">Selecione</option>
                         @foreach ($livros as $livro)
                         <option value="{{ $livro->id }}">{{ $livro->titulo }}</option>
@@ -32,7 +32,7 @@
             <div class="pesquisa-direita">
                 <div class="col-md6 inputs-direita">
                     <label for="autor">Assunto</label>
-                    <select name="assunto" id="assunto" class="form-control">
+                    <select name="assunto" id="assunto-catalogo" class="form-control">
                         <option value="">Selecione</option>
                         @foreach ($assuntos as $assunto)
                         <option value="{{ $assunto->id }}">{{ $assunto->nome }}</option>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col-md6 inputs-direita">
                     <label for="autor">Editora</label>
-                    <select name="editora" id="editora" class="form-control">
+                    <select name="editora" id="editora-catalogo" class="form-control">
                         <option value="">Selecione</option>
                         @foreach ($editoras as $editora)
                         <option value="{{ $editora->id }}">{{ $editora->nome }}</option>

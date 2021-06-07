@@ -28,7 +28,7 @@
 
                 <div class="form-group">    
                 <label for="autor">Autor</label>
-                    <select class="form-control" name="autor" id="autor" required>
+                    <select class="form-control" name="fk_autor_id" id="autor" required>
                         <option value="{{$livro->relAutor->id ?? ''}}">{{$livro->relAutor->nome ?? 'Selecione'}}</option>
                         @foreach($autores as $autor)
                         <option value="{{$autor->id}}">{{$autor->nome}}</option>
@@ -38,7 +38,7 @@
 
                 <div class="form-group">   
                 <label for="assunto">Assunto</label> 
-                    <select class="form-control" name="assunto" id="assunto" required>
+                    <select class="form-control" name="fk_assunto_id" id="assunto" required>
                         <option value="{{$livro->relAssunto->id ?? ''}}">{{$livro->relAssunto->nome ?? 'Selecione'}}</option>
                         @foreach($assuntos as $assunto)
                         <option value="{{$assunto->id}}">{{$assunto->nome}}</option>
@@ -48,7 +48,7 @@
 
                 <div class="form-group">   
                 <label for="editora">Editora</label> 
-                    <select class="form-control" name="editora" id="editora">
+                    <select class="form-control" name="fk_editora_id" id="editora">
                         <option value="{{$livro->relEditora->id ?? ''}}">{{$livro->relEditora->nome ?? 'Selecione'}}</option>
                         @foreach($editoras as $editora)
                         <option value="{{$editora->id}}">{{$editora->nome}}</option>

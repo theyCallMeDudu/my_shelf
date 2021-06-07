@@ -277,19 +277,19 @@ $(function(){
         });
 
         // Deixar a combo com pesquisa dinâmica
-        $('#autor').select2({
+        $('#autor-catalogo').select2({
             theme: 'bootstrap4'
         });
 
-        $('#titulo').select2({
+        $('#titulo-catalogo').select2({
             theme: 'bootstrap4'
         });
 
-        $('#assunto').select2({
+        $('#assunto-catalogo').select2({
             theme: 'bootstrap4'
         });
 
-        $('#editora').select2({
+        $('#editora-catalogo').select2({
             theme: 'bootstrap4'
         });
 
@@ -302,8 +302,40 @@ $(function(){
         $('select').trigger('change.select2');
 
         });
+
+        // DataTable tabela livros (admin)
+        $('#data-table-livros').DataTable({
+            language:{
+                url: "//cdn.datatables.net/plug-ins/1.10.22/i18n/Portuguese-Brasil.json"
+            },
+        });
         
+        // DataTable tabela gestão de usuários (admin)
+        $('#data-table-usuarios').DataTable({
+            language:{
+                url: "//cdn.datatables.net/plug-ins/1.10.22/i18n/Portuguese-Brasil.json"
+            },
+        });
+
+        // DataTable tabela autores (admin)
+        $('#data-table-autores').DataTable({
+            language:{
+                url: "//cdn.datatables.net/plug-ins/1.10.22/i18n/Portuguese-Brasil.json"
+            },
+        });
         
-        
+        // DataTable tabela assuntos (admin)
+        $('#data-table-assuntos').DataTable({
+            language:{
+                url: "//cdn.datatables.net/plug-ins/1.10.22/i18n/Portuguese-Brasil.json"
+            },
+        });
+
+        // DataTable tabela editoras (admin)
+        $('#data-table-editoras').DataTable({
+            language:{
+                url: "//cdn.datatables.net/plug-ins/1.10.22/i18n/Portuguese-Brasil.json"
+            },
+        });
 
 });

@@ -365,6 +365,7 @@ div.card-body a:hover {
     background-color: #ce9d5a !important;
 }
 
+
 .btn-livros {
     border: none;
     background: none;
@@ -385,6 +386,10 @@ div.card-body a:hover {
 .div-btn-cad input {
     width: 100%;
     margin: 10px 0;
+}
+
+#livro-create-container {
+    min-height: 67vh;
 }
 
 /* Estante */

@@ -5,31 +5,31 @@
 @section('content')
 
     <div class="center">
+        <h1>Assuntos</h1>
         <!-- div busca -->
-        <div id="search-container" class="col-md-12 busca">
+        <!-- <div id="search-container" class="col-md-12 busca">
             @if ($search)
             <h1>Buscando por: {{ $search }}</h1>    
             @else
-            <h1>Assuntos</h1>
             @endif
-            <div class="right">
-                <a href="/assuntos/create">
-                    <button data-toggle="tooltip" data-placement="top" title="Novo assunto" class="btn-livros novo-livro">
-                        <i class="fas fa-plus-circle"></i>
-                    </button>
-                </a>
-            </div>
             <div class="clear"></div>
             <form action="/assuntos" method="GET" >
-                <input type="text" id="search_assunto" name="search-assunto" class="form-control form-search" placeholder="Busque por um assunto">
-                <input type="submit" class="btn-search" value="Pesquisar">
-                <div class="clear"></div>
-            </form>
+            <input type="text" id="search_assunto" name="search-assunto" class="form-control form-search" placeholder="Busque por um assunto">
+            <input type="submit" class="btn-search" value="Pesquisar">
+            <div class="clear"></div>
+        </form>
+    </div> -->
+        <div class="right">
+            <a href="/assuntos/create">
+                <button data-toggle="tooltip" data-placement="top" title="Novo assunto" class="btn-livros novo-livro">
+                    <i class="fas fa-plus-circle"></i>
+                </button>
+            </a>
         </div>
 
         <!-- div tabela -->
         <div id="livros-container" class="col-md-12" style="padding: 0;">
-        <table class="table table-livros">
+        <table class="table table-livros" id="data-table-assuntos">
             <thead>
                 <tr>
                     <th scope="col">Id</th>
